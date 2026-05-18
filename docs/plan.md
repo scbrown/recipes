@@ -33,8 +33,12 @@
 | Search | **Pagefind** | Static-friendly full-text search with tag/facet filtering; runs as a postbuild step. |
 | Hosting | **GitHub Pages** | Free, integrates with the existing repo. Cloudflare Pages noted as a future option if we want PR preview deploys. |
 | CI/CD | **GitHub Actions** | Build, validate, test, and deploy from the same place the code lives. |
-| Linting/formatting | **ESLint** + **Prettier** + `astro-eslint-parser` | Catches obvious bugs and keeps diffs clean. |
-| Type-checking | **TypeScript strict** + `astro check` | Catches schema misuse at build time. |
+| Linting/formatting | **ESLint** (strict config) + **Prettier** + `astro-eslint-parser` | Catches obvious bugs and keeps diffs clean. |
+| CSS linting | **Stylelint** with `stylelint-config-standard` + Tailwind plugin | Validates custom CSS and Tailwind usage. |
+| Markdown linting | **markdownlint-cli2** | Enforces consistent markdown structure across recipes and docs. |
+| Prose linting | **Vale** with a custom recipe style + **cspell** | English-language style checks on every recipe; spell-check with a custom cooking dictionary. |
+| Dead-code / package hygiene | **knip** + **publint** + **lockfile-lint** | Surfaces unused files/exports/deps; validates package metadata; rejects untrusted lockfile entries. |
+| Type-checking | **TypeScript strict** + `astro check` | `strict: true` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`. |
 
 ## Hosting & deployment
 
@@ -48,13 +52,16 @@ Three GitHub Actions workflows under `.github/workflows/`:
 
 1. **`ci.yml`** — runs on every PR and on pushes to non-main branches:
    - `pnpm install --frozen-lockfile`
-   - `pnpm lint` (ESLint + Prettier check)
-   - `pnpm typecheck` (`astro check`)
+   - `pnpm lint` — ESLint + Prettier + Stylelint + markdownlint
+   - `pnpm lint:prose` — Vale + cspell across `recipes/` and `docs/`
+   - `pnpm typecheck` — `astro check` with strict TS settings
+   - `pnpm validate` — cross-file content checks (ingredient references, units, slots)
    - `pnpm test:unit` (Vitest)
    - `pnpm build` (must succeed, including content schema validation)
    - `pnpm test:e2e` (Playwright against `astro preview`)
    - `pnpm test:a11y` (axe scan)
-   - Upload Playwright report and screenshot diffs as artifacts on failure.
+   - `pnpm hygiene` — knip, publint, lockfile-lint
+   - Upload Playwright report, screenshot diffs, and Vale report as artifacts on failure.
 
 2. **`deploy.yml`** — runs on push to `main`:
    - Rebuilds, runs Pagefind to generate search index, deploys to GitHub Pages via the official `actions/deploy-pages` action.
@@ -73,15 +80,109 @@ Three GitHub Actions workflows under `.github/workflows/`:
 
 ### Preview deploys
 
-GitHub Pages doesn't natively offer per-PR previews. Workable approaches:
+Deferred. GitHub Pages doesn't natively offer per-PR previews, and PR volume is currently zero. When it picks up, revisit:
 
-- **Artifact-based** — `ci.yml` uploads the built site as an artifact; reviewers download and serve locally. Simple, no extra service.
-- **Cloudflare Pages mirror** — connect the same repo to Cloudflare Pages purely for PR previews while keeping production on GitHub Pages. No cost, no domain change. Recommended once PR volume justifies it.
+- **Artifact-based** — `ci.yml` uploads the built site; reviewers download and serve locally. Lowest friction, no extra service.
+- **Cloudflare Pages mirror** — connect the same repo to Cloudflare Pages purely for PR previews while keeping production on GitHub Pages. Free, no domain change.
 
 ### Dependency hygiene
 
 - **Renovate** or Dependabot configured for weekly minor/patch PRs, monthly major.
 - pnpm overrides documented in `pnpm-workspace.yaml` if we ever pin a transitive dep.
+- `knip`, `publint`, and `lockfile-lint` run in CI to catch unused deps, malformed package metadata, and tampered lockfiles.
+
+## Linting & type safety
+
+Strict everywhere it's free, with an explicit ramp for prose. CI is the enforcement layer; pre-commit gives fast local feedback.
+
+### Code (TypeScript, Astro, Svelte, CSS)
+
+| Tool | Config | Notes |
+|---|---|---|
+| TypeScript | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `noImplicitOverride: true`, `noFallthroughCasesInSwitch: true` | Strict optionality and array access; `T \| undefined` everywhere it should be. |
+| ESLint | `@typescript-eslint/strict-type-checked`, `eslint-plugin-astro`, `eslint-plugin-svelte`, `eslint-plugin-unicorn`, `eslint-plugin-import` | Type-aware rules enabled; promise/async hygiene enforced. |
+| Prettier | Default + 100-char line width | Single source of truth for formatting; ESLint defers to it. |
+| Stylelint | `stylelint-config-standard`, `stylelint-config-recommended-scss` if we ever adopt SCSS, plus a Tailwind class-order plugin | Custom CSS validated; Tailwind class order is canonical. |
+| knip | Strict mode | Unused files, exports, dependencies, types fail CI. |
+| publint | n/a | Validates `package.json` metadata. |
+| lockfile-lint | Restrict registries to `https://registry.npmjs.org` and the public GitHub registry | Blocks lockfile tampering. |
+
+#### Branded ID types
+
+To make ingredient/recipe references impossible to mix up at the type level:
+
+```ts
+type IngredientId = string & { readonly __brand: 'IngredientId' };
+type RecipeId     = string & { readonly __brand: 'RecipeId' };
+
+declare function ingredient(id: IngredientId): Ingredient;
+// ingredient(recipeId) // type error
+```
+
+Generated at schema-load time by Zod transformers. Compute-layer signatures use branded IDs everywhere.
+
+### Content (recipes and ingredients)
+
+The structured frontmatter is type-checked by Zod via Astro Content Collections — covered in the Data Model section. Three additional layers sit on top:
+
+#### Markdown structure — markdownlint
+
+`markdownlint-cli2` with a project config under `.markdownlint.jsonc`. Rules:
+
+- Headings: ATX style, no duplicate text within a doc, no skipped levels.
+- Lists: consistent marker (`-`), 2-space continuation.
+- Code: fenced blocks with language tag.
+- Line length: warning-only at 100 chars (recipes have long ingredient lines; we don't want hard wraps).
+- Trailing whitespace and tabs blocked.
+
+#### Prose style — Vale
+
+Vale runs against `recipes/**/*.md` and `docs/**/*.md`. A custom style lives at `.vale/styles/Recipes/`. Initial rule set:
+
+| Rule | Behavior |
+|---|---|
+| `Recipes.UnitsConsistent` | Reject mixed unit spellings (`tbsp` vs `tablespoon`; pick `tbsp` and `tsp` consistently). |
+| `Recipes.TempFormat` | Require `°F` and `°C` with the degree symbol; reject `F`/`C` bare. |
+| `Recipes.NumericFractions` | Prefer typeset fractions or `1/2` form; reject `1 / 2` with spaces. |
+| `Recipes.ActiveVoice` | Warn on passive constructions in instruction steps. |
+| `Recipes.NoFiller` | Reject "just", "simply", "easy" — common recipe filler. |
+| `Recipes.NoJumpToRecipe` | Reject SEO padding patterns. |
+| `Recipes.IngredientCase` | Lowercase ingredient names except proper nouns (Greek yogurt, Maldon salt). |
+| `Recipes.GramsForBaking` | Warn when a baking recipe lists volume without a gram equivalent. |
+| Vale's built-in `write-good`, `Microsoft`, `proselint` packages | Selectively enabled where they don't conflict with recipe voice. |
+
+Severity tiers: `error` fails CI; `warning` reports but passes; `suggestion` is informational only. Authors override with `<!-- vale Recipes.RuleName = NO -->` in rare justified cases.
+
+#### Spell-check — cspell
+
+`cspell` with `.cspell.json` referencing:
+
+- `@cspell/dict-en_us`
+- A project dictionary at `.cspell/cooking.txt` containing modernist and specialty terms (`xanthan`, `allulose`, `agar`, `misugaru`, `PB2`, `spherification`, `chiffonade`, `mise en place`, etc.).
+- Per-file ignores embedded as comments where appropriate.
+
+Recipes can introduce new ingredients with brand names by adding entries to `.cspell/cooking.txt` in the same PR.
+
+#### Inclusive language — alex (optional, low priority)
+
+`alex` flags potentially insensitive phrasing. Run as a warning-only check until we hit a real-world issue. Off by default in CI.
+
+### Pre-commit (Husky + lint-staged)
+
+Fast local feedback runs on staged files only:
+
+| Staged file pattern | Hook |
+|---|---|
+| `*.{ts,tsx,svelte,astro,js,mjs,cjs}` | ESLint --fix, Prettier |
+| `*.{css,scss}` | Stylelint --fix, Prettier |
+| `*.md` | markdownlint --fix, Prettier, Vale (errors only), cspell |
+| `data/ingredients/**/*.yaml` or `recipes/**/*.md` | `pnpm validate` (cross-reference check) |
+
+A `--no-verify` escape hatch exists; CI is the backstop and will catch anything skipped locally.
+
+### IDE integration
+
+`.vscode/extensions.json` recommends the matching extensions (ESLint, Stylelint, Vale, cspell, markdownlint, Astro, Svelte, Tailwind). `.vscode/settings.json` enables format-on-save and lint-on-save so contributors see issues inline.
 
 ## Data model
 
@@ -269,10 +370,7 @@ Output is consumed by:
 
 ### Pre-commit
 
-`lint-staged` + `husky`:
-- Prettier on staged files
-- ESLint on staged JS/TS
-- `validate.mjs` if any `data/ingredients/**` or `recipes/**` changed
+`lint-staged` + `husky` — full mapping in the **Linting & type safety** section. Summary: format, lint, prose-check, and validate cross-references on the files you actually changed.
 
 ### Contributor guide
 
@@ -506,15 +604,17 @@ One synthetic recipe lives at `recipes/__fixtures/all-features.md`, excluded fro
 
 Each phase is shippable on its own. Stop wherever the value caps out.
 
-### Phase 1 — Foundation (data + rendering + deploy pipeline)
-- Astro project scaffolded with TypeScript, Tailwind, Svelte islands, pnpm
-- ESLint, Prettier, Husky pre-commit
-- Ingredient + recipe Zod schemas via Content Collections
+### Phase 1 — Foundation (data + rendering + deploy + lint stack)
+- Astro project scaffolded with TypeScript strict, Tailwind, Svelte islands, pnpm
+- Full lint stack wired: ESLint (strict-type-checked), Prettier, Stylelint, markdownlint, Vale with the `Recipes` custom style, cspell with the cooking dictionary, knip
+- Husky + lint-staged pre-commit hook
+- `.vscode/extensions.json` + `settings.json` for IDE integration
+- Ingredient + recipe Zod schemas via Content Collections; branded `IngredientId` / `RecipeId` types
 - 20–30 seed ingredients covering the existing 4 recipes
 - Convert existing 4 recipes to the structured format
 - Per-recipe page renders ingredients, instructions, hero image (or placeholder)
 - Design tokens defined; typography and color baseline in place
-- `ci.yml` runs lint, typecheck, build, unit tests
+- `ci.yml` runs the full lint + prose-lint + typecheck + validate + unit + build pipeline
 - `deploy.yml` ships `main` to GitHub Pages
 - Vitest unit tests for unit conversion and ingredient resolution
 
