@@ -1,0 +1,13 @@
+name: Vanilla Extract
+roles: [flavor]
+units:
+  tbsp: 13
+  tsp: 4.3
+nutrition_per_100g:
+  calories: 288
+  carbohydrate: 12.7
+  fiber: 0
+  net_carbs: 12.7
+  sodium_mg: 9
+sources:
+  - 'USDA FDC #170199'

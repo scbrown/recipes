@@ -1,0 +1,15 @@
+name: Agar-Agar Powder
+roles: [gelling-agent]
+units:
+  tbsp: 9
+  tsp: 3
+nutrition_per_100g:
+  calories: 306
+  protein: 6.2
+  carbohydrate: 80.9
+  fat: 0.3
+  fiber: 7.7
+  net_carbs: 73.2
+  sodium_mg: 102
+sources:
+  - 'USDA FDC #169105'

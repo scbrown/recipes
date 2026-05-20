@@ -1,0 +1,14 @@
+name: Apple Cider Vinegar
+roles: [vinegar, acid, liquid]
+units:
+  cup: 239
+  tbsp: 14.9
+  tsp: 5
+  oz: 28.4
+nutrition_per_100g:
+  calories: 21
+  carbohydrate: 0.9
+  fat: 0
+  sodium_mg: 5
+sources:
+  - 'USDA FDC #173469'

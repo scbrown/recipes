@@ -1,0 +1,15 @@
+name: Black Pepper (Coarsely Ground)
+roles: [spice]
+units:
+  tbsp: 6.9
+  tsp: 2.3
+nutrition_per_100g:
+  calories: 251
+  protein: 10.4
+  carbohydrate: 63.9
+  fat: 3.3
+  fiber: 25.3
+  net_carbs: 38.6
+  sodium_mg: 20
+sources:
+  - 'USDA FDC #170931'

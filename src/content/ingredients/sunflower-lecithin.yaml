@@ -1,0 +1,11 @@
+name: Sunflower Lecithin Powder
+roles: [emulsifier]
+units:
+  tbsp: 7.5
+  tsp: 2.5
+nutrition_per_100g:
+  calories: 763
+  fat: 67
+  carbohydrate: 8
+  fiber: 0
+  net_carbs: 8

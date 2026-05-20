@@ -1,0 +1,10 @@
+name: Inulin
+roles: [fiber, prebiotic]
+units:
+  tbsp: 7.5
+  tsp: 2.5
+nutrition_per_100g:
+  calories: 150
+  carbohydrate: 90
+  fiber: 90
+  net_carbs: 0

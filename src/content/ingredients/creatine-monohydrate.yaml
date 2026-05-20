@@ -1,0 +1,8 @@
+name: Creatine Monohydrate
+roles: [supplement]
+units:
+  tbsp: 12
+  tsp: 5
+nutrition_per_100g:
+  calories: 0
+notes: 'Effectively zero macros at typical 5 g serving.'

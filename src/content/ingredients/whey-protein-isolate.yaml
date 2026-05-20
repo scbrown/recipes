@@ -1,0 +1,17 @@
+name: Whey Protein Isolate
+brand_assumption: 'Generic 90% protein isolate, unflavored'
+roles: [protein]
+units:
+  cup: 112
+  tbsp: 7
+  scoop: 30
+nutrition_per_100g:
+  calories: 380
+  protein: 90
+  carbohydrate: 4
+  fat: 1
+  fiber: 0
+  net_carbs: 4
+  sodium_mg: 200
+  calcium_mg: 200
+notes: 'Nutrition is brand-dependent; assumes 90% protein by weight.'

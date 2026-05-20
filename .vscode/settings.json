@@ -1,0 +1,26 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "[astro]": { "editor.defaultFormatter": "astro-build.astro-vscode" },
+  "[svelte]": { "editor.defaultFormatter": "svelte.svelte-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "eslint.validate": ["javascript", "typescript", "astro", "svelte"],
+  "files.associations": {
+    "*.yaml": "yaml",
+    ".cspell/cooking.txt": "plaintext"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
+  },
+  "cSpell.customDictionaries": {
+    "cooking": {
+      "name": "cooking",
+      "path": "${workspaceFolder}/.cspell/cooking.txt",
+      "addWords": true
+    }
+  }
+}

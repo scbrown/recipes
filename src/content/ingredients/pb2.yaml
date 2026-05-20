@@ -1,0 +1,15 @@
+name: PB2 Powdered Peanut Butter
+brand_assumption: 'PB2 brand, original (defatted peanut flour + sugar + salt)'
+roles: [peanut, protein, flavor]
+units:
+  cup: 96
+  tbsp: 6
+  tsp: 2
+nutrition_per_100g:
+  calories: 333
+  protein: 41.7
+  carbohydrate: 33.3
+  fat: 8.3
+  fiber: 16.7
+  net_carbs: 16.6
+  sodium_mg: 833

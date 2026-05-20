@@ -1,0 +1,14 @@
+name: MCT Powder
+brand_assumption: 'C8/C10 MCT on tapioca fiber carrier'
+roles: [fat, mouthfeel]
+units:
+  cup: 90
+  tbsp: 5.6
+  tsp: 1.9
+nutrition_per_100g:
+  calories: 700
+  protein: 0
+  carbohydrate: 25
+  fat: 70
+  fiber: 15
+  net_carbs: 10

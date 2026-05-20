@@ -1,0 +1,257 @@
+---
+import { getCollection, render, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NutritionCard from '../../components/NutritionCard.astro';
+import { computeRecipeNutrition, getDefaultVariant } from '../../lib/recipe-nutrition.ts';
+
+export async function getStaticPaths() {
+  const recipes = await getCollection('recipes', ({ data }) => !data.draft);
+  return recipes.map((recipe) => ({ params: { id: recipe.id }, props: { recipe } }));
+}
+
+const { recipe } = Astro.props;
+const { Content } = await render(recipe);
+const defaultVariant = getDefaultVariant(recipe);
+const nutrition = await computeRecipeNutrition(recipe, defaultVariant?.id);
+
+type IngredientItem = (typeof recipe.data.ingredients)[number];
+
+async function describe(item: IngredientItem): Promise<{
+  label: string;
+  qty: string;
+  note?: string;
+  alternativesLabel?: string;
+}> {
+  function fmtQty(q: { amount?: number; unit?: string; pinch?: boolean }): string {
+    if (q.pinch) return 'pinch';
+    return `${q.amount ?? ''} ${q.unit ?? ''}`.trim();
+  }
+  if ('id' in item) {
+    const entry = await getEntry('ingredients', item.id.id);
+    return {
+      label: entry?.data.name ?? item.id.id,
+      qty: fmtQty(item.quantity),
+      ...(item.note !== undefined && { note: item.note }),
+    };
+  }
+  const def = await getEntry('ingredients', item.default.id);
+  const alts = await Promise.all(
+    (item.alternatives ?? []).map(async (a) => {
+      const e = await getEntry('ingredients', a.id.id);
+      return e?.data.name ?? a.id.id;
+    }),
+  );
+  return {
+    label: def?.data.name ?? item.default.id,
+    qty: fmtQty(item.quantity),
+    ...(item.note !== undefined && { note: item.note }),
+    ...(alts.length > 0 && { alternativesLabel: `or: ${alts.join(', ')}` }),
+  };
+}
+
+const baseRows = await Promise.all(recipe.data.ingredients.map(describe));
+const variantRows = defaultVariant
+  ? await Promise.all((defaultVariant.additions ?? []).map(describe))
+  : [];
+---
+
+<BaseLayout title={recipe.data.title} description={recipe.data.summary}>
+  <article>
+    <header class="recipe-header">
+      <ul class="tags ui">
+        {recipe.data.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+      <h1>{recipe.data.title}</h1>
+      {recipe.data.summary && <p class="lede">{recipe.data.summary}</p>}
+      {
+        recipe.data.yields && (
+          <p class="ui muted yields">
+            <span>Yields:</span> {recipe.data.yields}
+          </p>
+        )
+      }
+    </header>
+
+    <div class="layout">
+      <section class="ingredients">
+        <h2>Ingredients</h2>
+        <table>
+          <tbody>
+            {
+              baseRows.map((row) => (
+                <tr>
+                  <td class="qty mono">{row.qty}</td>
+                  <td>
+                    {row.label}
+                    {row.note && <span class="note muted">— {row.note}</span>}
+                    {row.alternativesLabel && (
+                      <span class="alt muted">{row.alternativesLabel}</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+
+        {
+          defaultVariant && (
+            <>
+              <h3>For the {defaultVariant.name.toLowerCase()}</h3>
+              <p class="ui muted">Serving: {defaultVariant.serving}</p>
+              <table>
+                <tbody>
+                  {variantRows.map((row) => (
+                    <tr>
+                      <td class="qty mono">{row.qty}</td>
+                      <td>
+                        {row.label}
+                        {row.note && <span class="note muted">— {row.note}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )
+        }
+
+        {
+          recipe.data.variants && recipe.data.variants.length > 1 && (
+            <div class="other-variants">
+              <h4 class="ui muted">Other preparations</h4>
+              <ul class="ui">
+                {recipe.data.variants
+                  .filter((v) => v.id !== defaultVariant?.id)
+                  .map((v) => (
+                    <li>
+                      {v.name} — {v.serving}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )
+        }
+
+        {
+          recipe.data.flavors && recipe.data.flavors.length > 0 && (
+            <div class="flavors">
+              <h4 class="ui muted">Flavor variants</h4>
+              <ul class="ui">
+                {recipe.data.flavors.map((f) => (
+                  <li>{f.name}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </section>
+
+      <aside class="rail">
+        <NutritionCard
+          total={nutrition.total}
+          perServing={nutrition.perServing}
+          serving={defaultVariant?.serving}
+        />
+      </aside>
+    </div>
+
+    <section class="instructions prose">
+      <Content />
+    </section>
+  </article>
+
+  <style>
+    .recipe-header {
+      margin-bottom: 2.5rem;
+    }
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tags li {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      background: var(--color-code-bg);
+      color: var(--color-muted);
+      border-radius: 2px;
+    }
+    .lede {
+      font-size: 1.15rem;
+      color: var(--color-muted);
+      margin-block: 0.5rem 0;
+      max-width: var(--measure-base);
+    }
+    .yields {
+      margin-top: 0.5rem;
+    }
+    .yields span {
+      font-weight: 600;
+    }
+    .layout {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .ingredients h2 {
+      margin-block: 0 1rem;
+    }
+    .ingredients h3 {
+      margin-block: 2rem 0.5rem;
+      font-size: 1.05rem;
+    }
+    .ingredients h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-block: 2rem 0.5rem;
+    }
+    .ingredients ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .ingredients ul li {
+      padding: 0.15rem 0.5rem;
+      background: var(--color-code-bg);
+      border-radius: 2px;
+      font-size: 0.85rem;
+    }
+    .qty {
+      width: 8rem;
+      white-space: nowrap;
+      vertical-align: top;
+      color: var(--color-muted);
+    }
+    .note,
+    .alt {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      margin-top: 0.15rem;
+    }
+    .rail {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+    }
+    .instructions {
+      margin-top: 1rem;
+    }
+  </style>
+</BaseLayout>

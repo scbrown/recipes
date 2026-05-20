@@ -1,0 +1,11 @@
+extends: existence
+message: "Remove filler word '%s' — recipe instructions read better without it."
+level: error
+ignorecase: true
+tokens:
+  - just
+  - simply
+  - easy
+  - basically
+  - literally
+  - really

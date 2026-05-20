@@ -1,0 +1,14 @@
+name: Baking Powder
+roles: [leavening]
+units:
+  tbsp: 13.8
+  tsp: 4.6
+nutrition_per_100g:
+  calories: 53
+  carbohydrate: 27.7
+  fiber: 0.2
+  net_carbs: 27.5
+  sodium_mg: 10600
+  calcium_mg: 5876
+sources:
+  - 'USDA FDC #170875'

@@ -1,0 +1,11 @@
+name: Xanthan Gum
+roles: [thickener, stabilizer]
+units:
+  tbsp: 9
+  tsp: 3
+nutrition_per_100g:
+  calories: 333
+  carbohydrate: 78
+  fiber: 78
+  net_carbs: 0
+notes: 'Used in tiny quantities; nutritional contribution per recipe is negligible.'

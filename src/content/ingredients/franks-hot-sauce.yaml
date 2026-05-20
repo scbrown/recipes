@@ -1,0 +1,13 @@
+name: Frank's RedHot Original (or Extra Hot)
+brand_assumption: "Frank's RedHot, cayenne pepper sauce base"
+roles: [hot-sauce, liquid, acid]
+units:
+  cup: 240
+  tbsp: 15
+  tsp: 5
+  oz: 28.4
+nutrition_per_100g:
+  calories: 0
+  carbohydrate: 0
+  fat: 0
+  sodium_mg: 4933

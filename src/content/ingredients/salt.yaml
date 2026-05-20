@@ -1,0 +1,11 @@
+name: Salt
+roles: [seasoning]
+units:
+  cup: 273
+  tbsp: 17
+  tsp: 5.7
+nutrition_per_100g:
+  calories: 0
+  sodium_mg: 38758
+sources:
+  - 'USDA FDC #173468'

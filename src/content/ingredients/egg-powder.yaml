@@ -1,0 +1,17 @@
+name: Whole Egg Powder
+roles: [egg, binder]
+units:
+  cup: 85
+  tbsp: 5.3
+  tsp: 1.8
+nutrition_per_100g:
+  calories: 594
+  protein: 47
+  carbohydrate: 4.8
+  fat: 41
+  fiber: 0
+  net_carbs: 4.8
+  sodium_mg: 523
+  calcium_mg: 192
+sources:
+  - 'USDA FDC #172182'

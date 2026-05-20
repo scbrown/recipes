@@ -1,0 +1,16 @@
+name: Malted Milk Powder
+roles: [flavor, dairy-powder]
+units:
+  cup: 122
+  tbsp: 7.6
+  tsp: 2.5
+nutrition_per_100g:
+  calories: 419
+  protein: 12
+  carbohydrate: 71.6
+  fat: 8.4
+  fiber: 2.5
+  net_carbs: 69.1
+  sodium_mg: 410
+sources:
+  - 'USDA FDC #170879'

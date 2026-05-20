@@ -1,0 +1,16 @@
+name: Yellow Mustard
+roles: [condiment, emulsifier, acid]
+units:
+  cup: 249
+  tbsp: 15.6
+  tsp: 5.2
+nutrition_per_100g:
+  calories: 66
+  protein: 4.4
+  carbohydrate: 5.3
+  fat: 4
+  fiber: 3.3
+  net_carbs: 2.0
+  sodium_mg: 1135
+sources:
+  - 'USDA FDC #173727'

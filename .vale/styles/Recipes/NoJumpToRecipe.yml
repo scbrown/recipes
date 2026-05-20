@@ -1,0 +1,14 @@
+extends: existence
+message: "Skip the 'jump to recipe' / life-story SEO padding pattern."
+level: error
+ignorecase: true
+tokens:
+  - jump to recipe
+  - jump to the recipe
+  - my family loves
+  - my husband loves
+  - my wife loves
+  - my kids love
+  - my children love
+  - the best ever
+  - the perfect

@@ -1,0 +1,10 @@
+name: Butter Extract
+roles: [flavor]
+units:
+  tbsp: 13
+  tsp: 4.3
+nutrition_per_100g:
+  calories: 250
+  carbohydrate: 1
+  fat: 0
+notes: 'Used in drops; contribution per recipe is negligible.'

@@ -1,0 +1,12 @@
+name: Allulose
+roles: [sweetener]
+units:
+  cup: 192
+  tbsp: 12
+  tsp: 4
+nutrition_per_100g:
+  calories: 0
+  carbohydrate: 100
+  fiber: 0
+  net_carbs: 0
+notes: 'Labeled as 0 cal in the US; metabolic energy is ~0.4 cal/g.'

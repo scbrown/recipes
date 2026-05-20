@@ -1,0 +1,19 @@
+name: Pure Cranberry Juice
+brand_assumption: '100% unsweetened pure cranberry juice'
+roles: [juice, liquid, acid]
+units:
+  cup: 253
+  tbsp: 15.8
+  oz: 30.4
+  ml: 1.04
+nutrition_per_100g:
+  calories: 46
+  protein: 0.4
+  carbohydrate: 12
+  fat: 0.1
+  fiber: 0.1
+  net_carbs: 11.9
+  sodium_mg: 2
+  potassium_mg: 77
+sources:
+  - 'USDA FDC #173834'

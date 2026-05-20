@@ -1,0 +1,10 @@
+name: Baking Soda
+roles: [leavening]
+units:
+  tbsp: 17.3
+  tsp: 5.8
+nutrition_per_100g:
+  calories: 0
+  sodium_mg: 27360
+sources:
+  - 'USDA FDC #170836'

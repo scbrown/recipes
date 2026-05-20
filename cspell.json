@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "dictionaryDefinitions": [
+    {
+      "name": "cooking",
+      "path": ".cspell/cooking.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["en_US", "cooking"],
+  "ignorePaths": ["node_modules", "dist", ".astro", "pnpm-lock.yaml", ".vale/styles/Vocab"],
+  "allowCompoundWords": true,
+  "minWordLength": 4
+}

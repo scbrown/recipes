@@ -1,0 +1,8 @@
+name: Citric Acid
+roles: [acid, flavor]
+units:
+  tbsp: 13
+  tsp: 4.3
+nutrition_per_100g:
+  calories: 257
+  carbohydrate: 70

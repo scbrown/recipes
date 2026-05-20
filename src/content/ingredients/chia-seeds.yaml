@@ -1,0 +1,17 @@
+name: Milled Chia Seeds
+roles: [fiber, omega-3]
+units:
+  cup: 168
+  tbsp: 10.5
+  tsp: 3.5
+nutrition_per_100g:
+  calories: 486
+  protein: 16.5
+  carbohydrate: 42.1
+  fat: 30.7
+  fiber: 34.4
+  net_carbs: 7.7
+  sodium_mg: 16
+  calcium_mg: 631
+sources:
+  - 'USDA FDC #170554'

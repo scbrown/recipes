@@ -1,0 +1,19 @@
+name: Molasses
+roles: [sweetener]
+units:
+  cup: 337
+  tbsp: 21
+  tsp: 7
+nutrition_per_100g:
+  calories: 290
+  protein: 0
+  carbohydrate: 74.7
+  fat: 0.1
+  fiber: 0
+  net_carbs: 74.7
+  sodium_mg: 37
+  calcium_mg: 205
+  iron_mg: 4.7
+  potassium_mg: 1464
+sources:
+  - 'USDA FDC #169655'

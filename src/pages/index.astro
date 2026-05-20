@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const recipes = (await getCollection('recipes', ({ data }) => !data.draft)).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Recipes"
+  description="A collection of formula-based recipes with composable ingredients and nutrition data."
+>
+  <section class="intro prose">
+    <h1>Recipes</h1>
+    <p>
+      A small collection of recipes focused on functional ingredients, modernist techniques, and
+      high-protein formulations. Each recipe is built from a shared ingredient library with
+      substitutable slots and nutrition computed at build time.
+    </p>
+  </section>
+
+  <section class="recipe-grid">
+    {
+      recipes.map((recipe) => (
+        <a href={`${base}/recipes/${recipe.id}`} class="recipe-card">
+          <h2>{recipe.data.title}</h2>
+          {recipe.data.summary && <p class="summary">{recipe.data.summary}</p>}
+          <ul class="tags">
+            {recipe.data.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </a>
+      ))
+    }
+  </section>
+
+  <style>
+    .intro {
+      margin-bottom: 3rem;
+    }
+    .recipe-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+    .recipe-card {
+      display: block;
+      padding: 1.5rem;
+      background: var(--color-card);
+      border: 1px solid var(--color-rule);
+      border-radius: var(--radius-base);
+      text-decoration: none;
+      color: var(--color-fg);
+      transition: border-color 200ms ease;
+    }
+    .recipe-card:hover {
+      border-color: var(--color-accent);
+    }
+    .recipe-card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.15rem;
+    }
+    .summary {
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin: 0 0 1rem;
+      line-height: 1.4;
+    }
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tags li {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      background: var(--color-code-bg);
+      color: var(--color-muted);
+      border-radius: 2px;
+    }
+  </style>
+</BaseLayout>

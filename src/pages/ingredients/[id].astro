@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const ingredients = await getCollection('ingredients');
+  const recipes = await getCollection('recipes', ({ data }) => !data.draft);
+
+  return ingredients.map((ing) => {
+    const usedBy = recipes.filter((r) => {
+      return r.data.ingredients.some((item) => {
+        if ('id' in item) return item.id.id === ing.id;
+        if (item.default.id === ing.id) return true;
+        return (item.alternatives ?? []).some((a) => a.id.id === ing.id);
+      });
+    });
+    return { params: { id: ing.id }, props: { ingredient: ing, usedBy } };
+  });
+}
+
+const { ingredient, usedBy } = Astro.props;
+const n = ingredient.data.nutrition_per_100g;
+const base = import.meta.env.BASE_URL;
+
+function fmt(v: number | undefined, unit = ''): string {
+  if (v === undefined) return '—';
+  const rounded = v < 10 ? v.toFixed(1) : Math.round(v).toString();
+  return unit ? `${rounded} ${unit}` : rounded;
+}
+---
+
+<BaseLayout title={ingredient.data.name}>
+  <article>
+    <header>
+      <h1>{ingredient.data.name}</h1>
+      <ul class="tags ui">
+        {ingredient.data.roles.map((r) => <li>{r}</li>)}
+      </ul>
+      {
+        ingredient.data.brand_assumption && (
+          <p class="muted">Brand assumption: {ingredient.data.brand_assumption}</p>
+        )
+      }
+    </header>
+
+    <section>
+      <h2>Nutrition per 100 g</h2>
+      <table class="ui">
+        <tbody>
+          <tr><td>Calories</td><td class="mono">{fmt(n.calories)}</td></tr>
+          <tr><td>Protein</td><td class="mono">{fmt(n.protein, 'g')}</td></tr>
+          <tr><td>Carbohydrate</td><td class="mono">{fmt(n.carbohydrate, 'g')}</td></tr>
+          <tr><td>Net carbs</td><td class="mono">{fmt(n.net_carbs, 'g')}</td></tr>
+          <tr><td>Fat</td><td class="mono">{fmt(n.fat, 'g')}</td></tr>
+          <tr><td>Fiber</td><td class="mono">{fmt(n.fiber, 'g')}</td></tr>
+          <tr><td>Sodium</td><td class="mono">{fmt(n.sodium_mg, 'mg')}</td></tr>
+          {
+            n.calcium_mg !== undefined && (
+              <tr>
+                <>
+                  <td>Calcium</td>
+                  <td class="mono">{fmt(n.calcium_mg, 'mg')}</td>
+                </>
+              </tr>
+            )
+          }
+          {
+            n.iron_mg !== undefined && (
+              <tr>
+                <>
+                  <td>Iron</td>
+                  <td class="mono">{fmt(n.iron_mg, 'mg')}</td>
+                </>
+              </tr>
+            )
+          }
+          {
+            n.potassium_mg !== undefined && (
+              <tr>
+                <>
+                  <td>Potassium</td>
+                  <td class="mono">{fmt(n.potassium_mg, 'mg')}</td>
+                </>
+              </tr>
+            )
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Units</h2>
+      <table class="ui">
+        <thead><tr><th>Unit</th><th>Grams</th></tr></thead>
+        <tbody>
+          {
+            Object.entries(ingredient.data.units).map(([unit, grams]) => (
+              <tr>
+                <>
+                  <td>1 {unit}</td>
+                  <td class="mono">{grams} g</td>
+                </>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    {
+      usedBy.length > 0 && (
+        <section>
+          <h2>Used in</h2>
+          <ul class="ui">
+            {usedBy.map((r) => (
+              <li>
+                <a href={`${base}/recipes/${r.id}`}>{r.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      ingredient.data.notes && (
+        <section class="prose">
+          <h2>Notes</h2>
+          <p>{ingredient.data.notes}</p>
+        </section>
+      )
+    }
+  </article>
+
+  <style>
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+    .tags li {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      background: var(--color-code-bg);
+      color: var(--color-muted);
+    }
+    section {
+      margin-block: 2rem;
+    }
+    table {
+      max-width: 28rem;
+    }
+  </style>
+</BaseLayout>

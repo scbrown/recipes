@@ -1,0 +1,14 @@
+name: Neutral Oil
+brand_assumption: 'Canola or vegetable oil'
+roles: [oil, spherification-bath]
+units:
+  cup: 218
+  tbsp: 13.6
+  oz: 26.2
+  ml: 0.92
+nutrition_per_100g:
+  calories: 884
+  fat: 100
+  fiber: 0
+sources:
+  - 'USDA FDC #172336'

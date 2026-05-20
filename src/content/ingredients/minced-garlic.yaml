@@ -1,0 +1,17 @@
+name: Jarred Minced Garlic
+roles: [aromatic]
+units:
+  tbsp: 14
+  tsp: 4.7
+  clove: 3
+nutrition_per_100g:
+  calories: 149
+  protein: 6.4
+  carbohydrate: 33.1
+  fat: 0.5
+  fiber: 2.1
+  net_carbs: 31.0
+  sodium_mg: 17
+  calcium_mg: 181
+sources:
+  - 'USDA FDC #169230'

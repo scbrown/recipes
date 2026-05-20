@@ -18,27 +18,27 @@
 
 ## Tech stack
 
-| Layer | Choice | Why |
-|---|---|---|
-| Generator | **Astro** with Content Collections | Schema validation catches typos and broken references at build time; MDX lets us embed charts in recipes; static output deploys anywhere. |
-| Package manager | **pnpm** | Fastest install, disk-efficient via content-addressable store, deterministic lockfile. Node version pinned via `.nvmrc`. |
-| Data format | **YAML** for ingredients, **Markdown + YAML frontmatter** for recipes | Human-editable, diff-friendly, easy for contributors. |
-| Schema validation | **Zod** via Astro Content Collections | Single source of truth for shape of ingredients and recipes; types flow to templates and tests. |
-| Styling | **Tailwind CSS** + a small set of CSS custom properties for design tokens | Fast iteration, well-supported in Astro, kills the cascade-debugging tax. Tokens for colors/spacing keep theming centralized. |
-| Interactive islands | **Svelte** | Tiny runtime, excellent reactivity for substitution/variant switchers and chart updates. Used only where interactivity is needed. |
-| Charts | **Chart.js** (with `svelte-chartjs`) | Lightweight, declarative, no framework lock-in. Observable Plot considered for the comparison page if statistical visuals get richer. |
-| Images | **Astro `<Image>`** (sharp under the hood) | Built-in responsive srcsets, WebP/AVIF, lazy loading, no extra service. |
-| Icons | **Lucide** via `lucide-svelte`/Astro integration | Clean, consistent, tree-shakeable. |
-| Typography | **Inter** (UI/tables) + **Source Serif 4** (body) self-hosted via `@fontsource` | Free, readable in kitchen lighting, no Google Fonts request. |
-| Search | **Pagefind** | Static-friendly full-text search with tag/facet filtering; runs as a postbuild step. |
-| Hosting | **GitHub Pages** | Free, integrates with the existing repo. Cloudflare Pages noted as a future option if we want PR preview deploys. |
-| CI/CD | **GitHub Actions** | Build, validate, test, and deploy from the same place the code lives. |
-| Linting/formatting | **ESLint** (strict config) + **Prettier** + `astro-eslint-parser` | Catches obvious bugs and keeps diffs clean. |
-| CSS linting | **Stylelint** with `stylelint-config-standard` + Tailwind plugin | Validates custom CSS and Tailwind usage. |
-| Markdown linting | **markdownlint-cli2** | Enforces consistent markdown structure across recipes and docs. |
-| Prose linting | **Vale** with a custom recipe style + **cspell** | English-language style checks on every recipe; spell-check with a custom cooking dictionary. |
-| Dead-code / package hygiene | **knip** + **publint** + **lockfile-lint** | Surfaces unused files/exports/deps; validates package metadata; rejects untrusted lockfile entries. |
-| Type-checking | **TypeScript strict** + `astro check` | `strict: true` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`. |
+| Layer                       | Choice                                                                          | Why                                                                                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Generator                   | **Astro** with Content Collections                                              | Schema validation catches typos and broken references at build time; MDX lets us embed charts in recipes; static output deploys anywhere. |
+| Package manager             | **pnpm**                                                                        | Fastest install, disk-efficient via content-addressable store, deterministic lockfile. Node version pinned via `.nvmrc`.                  |
+| Data format                 | **YAML** for ingredients, **Markdown + YAML frontmatter** for recipes           | Human-editable, diff-friendly, easy for contributors.                                                                                     |
+| Schema validation           | **Zod** via Astro Content Collections                                           | Single source of truth for shape of ingredients and recipes; types flow to templates and tests.                                           |
+| Styling                     | **Tailwind CSS** + a small set of CSS custom properties for design tokens       | Fast iteration, well-supported in Astro, kills the cascade-debugging tax. Tokens for colors/spacing keep theming centralized.             |
+| Interactive islands         | **Svelte**                                                                      | Tiny runtime, excellent reactivity for substitution/variant switchers and chart updates. Used only where interactivity is needed.         |
+| Charts                      | **Chart.js** (with `svelte-chartjs`)                                            | Lightweight, declarative, no framework lock-in. Observable Plot considered for the comparison page if statistical visuals get richer.     |
+| Images                      | **Astro `<Image>`** (sharp under the hood)                                      | Built-in responsive srcsets, WebP/AVIF, lazy loading, no extra service.                                                                   |
+| Icons                       | **Lucide** via `lucide-svelte`/Astro integration                                | Clean, consistent, tree-shakeable.                                                                                                        |
+| Typography                  | **Inter** (UI/tables) + **Source Serif 4** (body) self-hosted via `@fontsource` | Free, readable in kitchen lighting, no Google Fonts request.                                                                              |
+| Search                      | **Pagefind**                                                                    | Static-friendly full-text search with tag/facet filtering; runs as a postbuild step.                                                      |
+| Hosting                     | **GitHub Pages**                                                                | Free, integrates with the existing repo. Cloudflare Pages noted as a future option if we want PR preview deploys.                         |
+| CI/CD                       | **GitHub Actions**                                                              | Build, validate, test, and deploy from the same place the code lives.                                                                     |
+| Linting/formatting          | **ESLint** (strict config) + **Prettier** + `astro-eslint-parser`               | Catches obvious bugs and keeps diffs clean.                                                                                               |
+| CSS linting                 | **Stylelint** with `stylelint-config-standard` + Tailwind plugin                | Validates custom CSS and Tailwind usage.                                                                                                  |
+| Markdown linting            | **markdownlint-cli2**                                                           | Enforces consistent markdown structure across recipes and docs.                                                                           |
+| Prose linting               | **Vale** with a custom recipe style + **cspell**                                | English-language style checks on every recipe; spell-check with a custom cooking dictionary.                                              |
+| Dead-code / package hygiene | **knip** + **publint** + **lockfile-lint**                                      | Surfaces unused files/exports/deps; validates package metadata; rejects untrusted lockfile entries.                                       |
+| Type-checking               | **TypeScript strict** + `astro check`                                           | `strict: true` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`.                                       |
 
 ## Hosting & deployment
 
@@ -97,15 +97,15 @@ Strict everywhere it's free, with an explicit ramp for prose. CI is the enforcem
 
 ### Code (TypeScript, Astro, Svelte, CSS)
 
-| Tool | Config | Notes |
-|---|---|---|
-| TypeScript | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `noImplicitOverride: true`, `noFallthroughCasesInSwitch: true` | Strict optionality and array access; `T \| undefined` everywhere it should be. |
-| ESLint | `@typescript-eslint/strict-type-checked`, `eslint-plugin-astro`, `eslint-plugin-svelte`, `eslint-plugin-unicorn`, `eslint-plugin-import` | Type-aware rules enabled; promise/async hygiene enforced. |
-| Prettier | Default + 100-char line width | Single source of truth for formatting; ESLint defers to it. |
-| Stylelint | `stylelint-config-standard`, `stylelint-config-recommended-scss` if we ever adopt SCSS, plus a Tailwind class-order plugin | Custom CSS validated; Tailwind class order is canonical. |
-| knip | Strict mode | Unused files, exports, dependencies, types fail CI. |
-| publint | n/a | Validates `package.json` metadata. |
-| lockfile-lint | Restrict registries to `https://registry.npmjs.org` and the public GitHub registry | Blocks lockfile tampering. |
+| Tool          | Config                                                                                                                                               | Notes                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| TypeScript    | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `noImplicitOverride: true`, `noFallthroughCasesInSwitch: true` | Strict optionality and array access; `T \| undefined` everywhere it should be. |
+| ESLint        | `@typescript-eslint/strict-type-checked`, `eslint-plugin-astro`, `eslint-plugin-svelte`, `eslint-plugin-unicorn`, `eslint-plugin-import`             | Type-aware rules enabled; promise/async hygiene enforced.                      |
+| Prettier      | Default + 100-char line width                                                                                                                        | Single source of truth for formatting; ESLint defers to it.                    |
+| Stylelint     | `stylelint-config-standard`, `stylelint-config-recommended-scss` if we ever adopt SCSS, plus a Tailwind class-order plugin                           | Custom CSS validated; Tailwind class order is canonical.                       |
+| knip          | Strict mode                                                                                                                                          | Unused files, exports, dependencies, types fail CI.                            |
+| publint       | n/a                                                                                                                                                  | Validates `package.json` metadata.                                             |
+| lockfile-lint | Restrict registries to `https://registry.npmjs.org` and the public GitHub registry                                                                   | Blocks lockfile tampering.                                                     |
 
 #### Branded ID types
 
@@ -113,7 +113,7 @@ To make ingredient/recipe references impossible to mix up at the type level:
 
 ```ts
 type IngredientId = string & { readonly __brand: 'IngredientId' };
-type RecipeId     = string & { readonly __brand: 'RecipeId' };
+type RecipeId = string & { readonly __brand: 'RecipeId' };
 
 declare function ingredient(id: IngredientId): Ingredient;
 // ingredient(recipeId) // type error
@@ -139,17 +139,17 @@ The structured frontmatter is type-checked by Zod via Astro Content Collections 
 
 Vale runs against `recipes/**/*.md` and `docs/**/*.md`. A custom style lives at `.vale/styles/Recipes/`. Initial rule set:
 
-| Rule | Behavior |
-|---|---|
-| `Recipes.UnitsConsistent` | Reject mixed unit spellings (`tbsp` vs `tablespoon`; pick `tbsp` and `tsp` consistently). |
-| `Recipes.TempFormat` | Require `°F` and `°C` with the degree symbol; reject `F`/`C` bare. |
-| `Recipes.NumericFractions` | Prefer typeset fractions or `1/2` form; reject `1 / 2` with spaces. |
-| `Recipes.ActiveVoice` | Warn on passive constructions in instruction steps. |
-| `Recipes.NoFiller` | Reject "just", "simply", "easy" — common recipe filler. |
-| `Recipes.NoJumpToRecipe` | Reject SEO padding patterns. |
-| `Recipes.IngredientCase` | Lowercase ingredient names except proper nouns (Greek yogurt, Maldon salt). |
-| `Recipes.GramsForBaking` | Warn when a baking recipe lists volume without a gram equivalent. |
-| Vale's built-in `write-good`, `Microsoft`, `proselint` packages | Selectively enabled where they don't conflict with recipe voice. |
+| Rule                                                            | Behavior                                                                                  |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Recipes.UnitsConsistent`                                       | Reject mixed unit spellings (`tbsp` vs `tablespoon`; pick `tbsp` and `tsp` consistently). |
+| `Recipes.TempFormat`                                            | Require `°F` and `°C` with the degree symbol; reject `F`/`C` bare.                        |
+| `Recipes.NumericFractions`                                      | Prefer typeset fractions or `1/2` form; reject `1 / 2` with spaces.                       |
+| `Recipes.ActiveVoice`                                           | Warn on passive constructions in instruction steps.                                       |
+| `Recipes.NoFiller`                                              | Reject "just", "simply", "easy" — common recipe filler.                                   |
+| `Recipes.NoJumpToRecipe`                                        | Reject SEO padding patterns.                                                              |
+| `Recipes.IngredientCase`                                        | Lowercase ingredient names except proper nouns (Greek yogurt, Maldon salt).               |
+| `Recipes.GramsForBaking`                                        | Warn when a baking recipe lists volume without a gram equivalent.                         |
+| Vale's built-in `write-good`, `Microsoft`, `proselint` packages | Selectively enabled where they don't conflict with recipe voice.                          |
 
 Severity tiers: `error` fails CI; `warning` reports but passes; `suggestion` is informational only. Authors override with `<!-- vale Recipes.RuleName = NO -->` in rare justified cases.
 
@@ -171,12 +171,12 @@ Recipes can introduce new ingredients with brand names by adding entries to `.cs
 
 Fast local feedback runs on staged files only:
 
-| Staged file pattern | Hook |
-|---|---|
-| `*.{ts,tsx,svelte,astro,js,mjs,cjs}` | ESLint --fix, Prettier |
-| `*.{css,scss}` | Stylelint --fix, Prettier |
-| `*.md` | markdownlint --fix, Prettier, Vale (errors only), cspell |
-| `data/ingredients/**/*.yaml` or `recipes/**/*.md` | `pnpm validate` (cross-reference check) |
+| Staged file pattern                               | Hook                                                     |
+| ------------------------------------------------- | -------------------------------------------------------- |
+| `*.{ts,tsx,svelte,astro,js,mjs,cjs}`              | ESLint --fix, Prettier                                   |
+| `*.{css,scss}`                                    | Stylelint --fix, Prettier                                |
+| `*.md`                                            | markdownlint --fix, Prettier, Vale (errors only), cspell |
+| `data/ingredients/**/*.yaml` or `recipes/**/*.md` | `pnpm validate` (cross-reference check)                  |
 
 A `--no-verify` escape hatch exists; CI is the backstop and will catch anything skipped locally.
 
@@ -194,10 +194,10 @@ One file per ingredient under `data/ingredients/`:
 # data/ingredients/whey-isolate.yaml
 id: whey-isolate
 name: Whey Protein Isolate
-brand_assumption: "Generic 90% isolate"   # optional, for transparency
-roles: [protein]                          # used for substitution matching
+brand_assumption: 'Generic 90% isolate' # optional, for transparency
+roles: [protein] # used for substitution matching
 
-units:                                    # how to convert this ingredient to grams
+units: # how to convert this ingredient to grams
   scoop: 30
   tbsp: 7
   cup: 112
@@ -214,9 +214,9 @@ nutrition_per_100g:
   calcium_mg: 150
   vitamin_b12_ug: 1.2
 
-notes: "Brand-dependent; nutrition assumes 90% protein by weight."
+notes: 'Brand-dependent; nutrition assumes 90% protein by weight.'
 sources:
-  - "USDA FoodData Central #173420"
+  - 'USDA FoodData Central #173420'
 ```
 
 Required fields: `id`, `name`, `roles`, `units` (at least one), `nutrition_per_100g.calories`.
@@ -230,19 +230,19 @@ Everything else is optional, validated against the schema, and added incremental
 id: crepes-pancakes-nougat
 title: Master Crepe, Pancake, and Nougat Mix
 tags: [breakfast, high-protein, master-mix]
-yields: "6 cups dry mix"
+yields: '6 cups dry mix'
 
 # Base ingredients — used by all variants
 ingredients:
   - id: ap-flour
     quantity: { amount: 6, unit: cup }
 
-  - role: protein                                  # substitutable slot
+  - role: protein # substitutable slot
     quantity: { amount: 1, unit: cup }
     default: whey-isolate
     alternatives:
       - id: pea-protein
-        quantity: { amount: 1.1, unit: cup }       # density adjustment
+        quantity: { amount: 1.1, unit: cup } # density adjustment
       - id: casein
         quantity: { amount: 1, unit: cup }
 
@@ -254,7 +254,7 @@ ingredients:
 variants:
   - id: pancake
     name: Pancake
-    serving: "1 pancake (~80 g batter)"
+    serving: '1 pancake (~80 g batter)'
     yields_servings: 12
     additions:
       - id: water
@@ -266,7 +266,7 @@ variants:
 
   - id: crepe
     name: Crepe
-    serving: "1 crepe (~60 g batter)"
+    serving: '1 crepe (~60 g batter)'
     yields_servings: 18
     additions:
       - id: water
@@ -290,7 +290,6 @@ flavors:
       - id: malted-milk-powder
         quantity: { amount: 1, unit: tbsp }
 ---
-
 Body of the recipe in Markdown — prose instructions, technique notes, tips.
 ```
 
@@ -316,13 +315,14 @@ Build-time, written once in TypeScript inside Astro:
 5. **Emit** a JSON blob per recipe page so client-side JS can recompute on substitution swaps without a rebuild.
 
 Output is consumed by:
+
 - Per-recipe page (nutrition card + ingredient breakdown chart)
 - Comparison page (table + scatter/bar charts across all recipes)
 - Search index (Pagefind)
 
 ## Site structure
 
-```
+```text
 /                       Home: tag cloud + recent recipes
 /recipes/               Index, filterable by tag/role
 /recipes/<id>           Recipe page with interactive substitution + nutrition panel
@@ -338,10 +338,13 @@ Output is consumed by:
 
 1. Look up nutrition: USDA FoodData Central (free JSON API) for whole foods, Open Food Facts for branded products, Cronometer for specialty items.
 2. Create `data/ingredients/<id>.yaml` from the template:
+
    ```bash
    pnpm new:ingredient <id>
    ```
+
    The scaffolder prompts for required fields and writes a stub with `TODO` markers for nutrition values.
+
 3. Fill in `nutrition_per_100g` (calories required; macros strongly encouraged; micros optional).
 4. List units that recipes commonly use (`tbsp`, `cup`, `scoop`, `g`).
 5. Add `sources` so the number is auditable later.
@@ -360,13 +363,13 @@ Output is consumed by:
 
 ### Helper scripts under `scripts/`
 
-| Script | Purpose |
-|---|---|
-| `new-ingredient.mjs` | Interactive prompt → writes a stub ingredient YAML |
-| `new-recipe.mjs` | Interactive prompt → writes a stub recipe markdown |
-| `validate.mjs` | Resolves all references, checks unit conversions exist, flags orphan ingredients. Runs in CI. |
-| `seed-from-usda.mjs` | Pulls a list of FDC IDs from a CSV and emits ingredient YAML stubs |
-| `compute-nutrition.mjs` | Pure function library (also called from Astro at build time) — used by tests too |
+| Script                  | Purpose                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| `new-ingredient.mjs`    | Interactive prompt → writes a stub ingredient YAML                                            |
+| `new-recipe.mjs`        | Interactive prompt → writes a stub recipe markdown                                            |
+| `validate.mjs`          | Resolves all references, checks unit conversions exist, flags orphan ingredients. Runs in CI. |
+| `seed-from-usda.mjs`    | Pulls a list of FDC IDs from a CSV and emits ingredient YAML stubs                            |
+| `compute-nutrition.mjs` | Pure function library (also called from Astro at build time) — used by tests too              |
 
 ### Pre-commit
 
@@ -375,6 +378,7 @@ Output is consumed by:
 ### Contributor guide
 
 `CONTRIBUTING.md` will document the above workflow plus:
+
 - License expectations (contributions are CC BY 4.0)
 - Recipe writing style (units, voice, when to include grams vs volume)
 - Photo requirements (alt text, min resolution, licensing)
@@ -397,7 +401,7 @@ Output is consumed by:
 
 ### Naming convention
 
-```
+```text
 src/assets/recipes/<recipe-id>/
   hero.jpg             # required if any image is present
   step-01.jpg          # optional process shots
@@ -411,12 +415,12 @@ src/assets/recipes/<recipe-id>/
 images:
   hero:
     src: hero.jpg
-    alt: "Stack of pancakes drizzled with nougat filling, top-down view."
-    credit: "Photo by <name>"     # optional
+    alt: 'Stack of pancakes drizzled with nougat filling, top-down view.'
+    credit: 'Photo by <name>' # optional
   steps:
     - src: step-01.jpg
-      alt: "..."
-      after_step: 2               # optional — places photo after instruction step N
+      alt: '...'
+      after_step: 2 # optional — places photo after instruction step N
 ```
 
 ### Placeholder strategy
@@ -438,7 +442,7 @@ Clean editorial with quiet modernist accents. The site is for reading recipes in
 
 Defined as CSS custom properties at `:root`, consumed by Tailwind via `theme.extend`:
 
-```
+```css
 --color-bg            #fdfcf8  (warm off-white)
 --color-fg            #1f1d1a  (near-black, warm)
 --color-muted         #6b675f
@@ -471,6 +475,7 @@ Defined as CSS custom properties at `:root`, consumed by Tailwind via `theme.ext
 ### Interactive widgets
 
 Substitution and variant pickers feel like clean form controls, not decorative chips:
+
 - Radio-group semantics under the hood.
 - Currently selected option visually emphasized; alternatives clearly tappable.
 - Nutrition card animates value changes with a 200 ms tween (no layout shift).
@@ -537,15 +542,15 @@ Run against `astro preview` (or `astro dev` locally). Projects:
 
 Test suites under `tests/e2e/`:
 
-| Spec | Covers |
-|---|---|
-| `home.spec.ts` | Tag cloud renders, recent recipes link out |
+| Spec                  | Covers                                                                                                                     |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `home.spec.ts`        | Tag cloud renders, recent recipes link out                                                                                 |
 | `recipe-page.spec.ts` | All four seed recipes load; substitution swap visibly updates calories and protein; variant picker changes ingredient list |
-| `compare.spec.ts` | Sort by protein-per-cal, filter by tag `high-protein`, table reflects expected rows |
-| `search.spec.ts` | Pagefind returns expected recipes for keyword and tag queries |
-| `navigation.spec.ts` | Header links, breadcrumbs, 404 page |
-| `print.spec.ts` | Print stylesheet renders one recipe per page, hides nav |
-| `mobile.spec.ts` | Mobile nav drawer, variant picker as bottom sheet, table horizontal scroll |
+| `compare.spec.ts`     | Sort by protein-per-cal, filter by tag `high-protein`, table reflects expected rows                                        |
+| `search.spec.ts`      | Pagefind returns expected recipes for keyword and tag queries                                                              |
+| `navigation.spec.ts`  | Header links, breadcrumbs, 404 page                                                                                        |
+| `print.spec.ts`       | Print stylesheet renders one recipe per page, hides nav                                                                    |
+| `mobile.spec.ts`      | Mobile nav drawer, variant picker as bottom sheet, table horizontal scroll                                                 |
 
 Configuration notes:
 
@@ -592,19 +597,20 @@ One synthetic recipe lives at `recipes/__fixtures/all-features.md`, excluded fro
 
 ## Charts (initial set)
 
-| Chart | Where | What it shows |
-|---|---|---|
-| Stacked bar | Recipe page | Calories from protein / carbs / fat for the selected variant |
-| Donut | Recipe page | Per-ingredient contribution to selected nutrient (e.g. "where's the protein from?") |
-| Sortable table | Compare page | All recipes × all nutrients |
-| Scatter | Compare page | Protein-per-calorie vs total calories |
-| Radar | Recipe page (Phase 5) | Micronutrient coverage vs RDA |
+| Chart          | Where                 | What it shows                                                                       |
+| -------------- | --------------------- | ----------------------------------------------------------------------------------- |
+| Stacked bar    | Recipe page           | Calories from protein / carbs / fat for the selected variant                        |
+| Donut          | Recipe page           | Per-ingredient contribution to selected nutrient (e.g. "where's the protein from?") |
+| Sortable table | Compare page          | All recipes × all nutrients                                                         |
+| Scatter        | Compare page          | Protein-per-calorie vs total calories                                               |
+| Radar          | Recipe page (Phase 5) | Micronutrient coverage vs RDA                                                       |
 
 ## Phases
 
 Each phase is shippable on its own. Stop wherever the value caps out.
 
 ### Phase 1 — Foundation (data + rendering + deploy + lint stack)
+
 - Astro project scaffolded with TypeScript strict, Tailwind, Svelte islands, pnpm
 - Full lint stack wired: ESLint (strict-type-checked), Prettier, Stylelint, markdownlint, Vale with the `Recipes` custom style, cspell with the cooking dictionary, knip
 - Husky + lint-staged pre-commit hook
@@ -619,6 +625,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 - Vitest unit tests for unit conversion and ingredient resolution
 
 ### Phase 2 — Macro nutrition + interactive switchers
+
 - Macro fields populated for all seed ingredients (calories, protein, carbs, fat, fiber, net carbs, sodium)
 - Build-time nutrition computation joins ingredients → recipe → variant
 - Per-recipe macro card with active variant selected by default
@@ -627,6 +634,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 - First Playwright suite: `recipe-page.spec.ts` (load, switch, recompute) on chromium-desktop + mobile
 
 ### Phase 3 — Comparison view + search
+
 - `/compare` page with sortable table across all recipes
 - Tag-based filtering, sticky header and first column
 - One scatter chart (protein-per-calorie)
@@ -635,6 +643,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 - Visual regression snapshots for home, recipe, compare
 
 ### Phase 4 — Charts + a11y hardening
+
 - Stacked-bar macro chart per recipe
 - Per-ingredient contribution donut
 - Comparison-page stacked bar across recipes
@@ -643,6 +652,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 - `prefers-reduced-motion` respected for chart and value transitions
 
 ### Phase 5 — Micronutrients
+
 - Extend ingredient schema with micros (B12, iron, calcium, magnesium, potassium, zinc, vitamin D, fiber, sodium)
 - Backfill seed ingredients via USDA FDC where possible
 - Radar chart on recipe pages
@@ -650,6 +660,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 - Lighthouse CI workflow with weekly trend tracking
 
 ### Phase 6 — Polish + contribution flow
+
 - Print stylesheet (one recipe per page, no chrome) + `print.spec.ts`
 - Dark mode toggle
 - `CONTRIBUTING.md`, PR template, recipe and ingredient scaffolder scripts (`pnpm new:recipe`, `pnpm new:ingredient`)
@@ -668,7 +679,7 @@ Each phase is shippable on its own. Stop wherever the value caps out.
 ## Risks
 
 - **Ingredient library quality is the bottleneck.** Nutrition numbers are only as good as the underlying data. Budget for documenting assumptions clearly so users can audit.
-- **Schema churn.** Adding fields to ingredients later is easy; *renaming or restructuring* is painful once recipes reference IDs. Stabilize the ingredient schema before scaling up.
+- **Schema churn.** Adding fields to ingredients later is easy; _renaming or restructuring_ is painful once recipes reference IDs. Stabilize the ingredient schema before scaling up.
 - **Combinatorial UI complexity.** A recipe with 3 substitutable slots × 3 variants × 4 flavors = 108 combinations. Don't pre-render them — compute client-side and surface the active combination cleanly.
 
 ## Decision: tech stack lock-in

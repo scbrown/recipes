@@ -1,0 +1,17 @@
+name: Pea Protein Isolate
+brand_assumption: 'Generic 80% protein isolate, unflavored'
+roles: [protein]
+units:
+  cup: 96
+  tbsp: 6
+  scoop: 28
+nutrition_per_100g:
+  calories: 370
+  protein: 80
+  carbohydrate: 5
+  fat: 5
+  fiber: 5
+  net_carbs: 0
+  sodium_mg: 950
+  iron_mg: 5
+notes: 'Higher sodium and lower protein per gram than whey isolate.'

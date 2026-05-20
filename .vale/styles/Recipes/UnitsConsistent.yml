@@ -1,0 +1,13 @@
+extends: substitution
+message: "Use '%s' instead of '%s' for consistency across recipes."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  '\btablespoons?\b': tbsp
+  '\bteaspoons?\b': tsp
+  '\bounces?\b': oz
+  '\bgrams?\b(?! of)': g
+  '\bmilliliters?\b': ml
+  '\blitres?\b': liters

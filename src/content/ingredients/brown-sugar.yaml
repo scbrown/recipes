@@ -1,0 +1,15 @@
+name: Brown Sugar
+roles: [sweetener]
+units:
+  cup: 213
+  tbsp: 13.3
+  tsp: 4.4
+nutrition_per_100g:
+  calories: 380
+  carbohydrate: 98
+  fat: 0
+  fiber: 0
+  net_carbs: 98
+  sodium_mg: 28
+sources:
+  - 'USDA FDC #169655'

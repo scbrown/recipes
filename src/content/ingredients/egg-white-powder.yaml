@@ -1,0 +1,16 @@
+name: Egg White Powder
+roles: [egg-white, binder, foam-stabilizer]
+units:
+  cup: 80
+  tbsp: 5
+  tsp: 1.7
+nutrition_per_100g:
+  calories: 372
+  protein: 82
+  carbohydrate: 7.8
+  fat: 0
+  fiber: 0
+  net_carbs: 7.8
+  sodium_mg: 1280
+sources:
+  - 'USDA FDC #173425'

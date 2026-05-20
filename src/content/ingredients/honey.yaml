@@ -1,0 +1,17 @@
+name: Honey
+roles: [sweetener]
+units:
+  cup: 339
+  tbsp: 21
+  tsp: 7
+nutrition_per_100g:
+  calories: 304
+  protein: 0.3
+  carbohydrate: 82.4
+  fat: 0
+  fiber: 0.2
+  net_carbs: 82.2
+  sodium_mg: 4
+  potassium_mg: 52
+sources:
+  - 'USDA FDC #169640'

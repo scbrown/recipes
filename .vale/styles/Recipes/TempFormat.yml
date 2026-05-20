@@ -1,0 +1,9 @@
+extends: existence
+message: "Use the degree symbol: write '%s' as 100°F or 100°C."
+level: error
+nonword: true
+tokens:
+  - '\b\d{2,3}\s*F\b'
+  - '\b\d{2,3}\s*C\b'
+  - "\\b\\d{2,3}\\s*[\"']F\\b"
+  - "\\b\\d{2,3}\\s*[\"']C\\b"

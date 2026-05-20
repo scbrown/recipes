@@ -1,0 +1,13 @@
+name: Banana Flower Powder
+roles: [fiber, prebiotic, thickener]
+units:
+  cup: 100
+  tbsp: 6.3
+  tsp: 2.1
+nutrition_per_100g:
+  calories: 330
+  protein: 4
+  carbohydrate: 76
+  fat: 1
+  fiber: 50
+  net_carbs: 26

@@ -1,0 +1,18 @@
+name: All-Purpose Flour
+brand_assumption: 'Generic enriched bleached wheat flour'
+roles: [flour, starch-base]
+units:
+  cup: 125
+  tbsp: 8
+  tsp: 2.6
+nutrition_per_100g:
+  calories: 364
+  protein: 10.3
+  carbohydrate: 76.3
+  fat: 1.0
+  fiber: 2.7
+  net_carbs: 73.6
+  sodium_mg: 2
+  iron_mg: 4.6
+sources:
+  - 'USDA FDC #168880'

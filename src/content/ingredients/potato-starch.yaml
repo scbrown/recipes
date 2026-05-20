@@ -1,0 +1,16 @@
+name: Potato Starch
+roles: [starch, thickener]
+units:
+  cup: 160
+  tbsp: 10
+  tsp: 3.3
+nutrition_per_100g:
+  calories: 333
+  protein: 0.1
+  carbohydrate: 83.0
+  fat: 0.1
+  fiber: 0
+  net_carbs: 83.0
+  sodium_mg: 6
+sources:
+  - 'USDA FDC #169763'

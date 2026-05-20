@@ -1,23 +1,57 @@
 # Recipes
 
-A collection of original recipes focused on functional ingredients, modernist techniques, and high-protein formulations.
+A small collection of recipes focused on functional ingredients, modernist
+techniques, and high-protein formulations. Built as a static site with a shared
+ingredient library, substitutable slots, flavor variants, and nutrition
+computed at build time.
 
-## Index
+The deployed site is hosted on GitHub Pages from the `main` branch.
 
-### Drinks & Modernist Components
+## Recipes in this collection
 
-- [Cranberry Fluid Gel Topper](recipes/cranberry-fluid-gel-topper.md) — A xanthan-stabilized aerated topper that floats on carbonated drinks.
-- [Cranberry Agar Pearls](recipes/cranberry-agar-pearls.md) — Heat-stable pearls via cold-oil spherification.
+- [Master Crepe, Pancake, and Nougat Mix](src/content/recipes/crepes-pancakes-nougat.md)
+- [Cranberry Fluid Gel Topper](src/content/recipes/cranberry-fluid-gel-topper.md)
+- [Cranberry Agar Pearls](src/content/recipes/cranberry-agar-pearls.md)
+- [Custom Breakfast Shake & Porridge Formulations](src/content/recipes/breakfast-powder-formulations.md)
+- [Emulsified Extra-Hot Honey Garlic Wing Sauce](src/content/recipes/honey-garlic-wing-sauce.md)
 
-### Breakfast & Pantry Mixes
+## Repository layout
 
-- [Master Crepe, Pancake, and Nougat Recipes](recipes/crepes-pancakes-nougat.md) — A shelf-stable master mix for both pancakes and crepes, plus two nougat fillings.
-- [Custom Breakfast Shake & Porridge Formulations](recipes/breakfast-powder-formulations.md) — Low-GI, high-protein powdered breakfasts with a milk-like mouthfeel.
+```text
+src/
+  content/
+    ingredients/     # one YAML file per ingredient with nutrition per 100 g
+    recipes/         # one Markdown file per recipe with structured frontmatter
+  content.config.ts  # Zod schemas for ingredients and recipes
+  lib/nutrition/     # pure nutrition computation library (unit-tested)
+  pages/             # Astro pages
+  layouts/           # Astro layouts
+  components/        # Astro and Svelte components
+  styles/            # global CSS and design tokens
+tests/unit/          # Vitest unit tests for the nutrition library
+scripts/             # validation helpers
+docs/plan.md         # design document for the site
+```
+
+## Development
+
+```bash
+pnpm install
+pnpm dev              # http://localhost:4321
+pnpm build            # produce static site in dist/
+pnpm test:unit        # Vitest
+pnpm validate         # cross-file ingredient and recipe checks
+pnpm lint             # eslint + stylelint + markdownlint + prettier --check
+pnpm lint:prose       # cspell
+pnpm typecheck        # astro check (TypeScript strict)
+```
 
 ## Contributing
 
-Pull requests with new recipes, variations, or technique notes are welcome. Please keep each recipe in its own Markdown file under `recipes/` and add it to the index above.
+PRs welcome for new recipes, ingredient additions, technique notes, or photos.
+Recipes are licensed under [CC BY 4.0](LICENSE).
 
-## License
-
-Recipes in this repository are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE). You are free to share and adapt the material with appropriate credit.
+A more detailed contributor guide and authoring scaffolders will land in a later
+phase. For now: add a YAML ingredient to `src/content/ingredients/`, then a
+Markdown recipe to `src/content/recipes/` with structured frontmatter — see the
+existing recipes for the shape.

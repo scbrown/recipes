@@ -1,0 +1,17 @@
+name: Unsalted Butter
+roles: [fat]
+units:
+  cup: 227
+  tbsp: 14.2
+  tsp: 4.7
+nutrition_per_100g:
+  calories: 717
+  protein: 0.9
+  carbohydrate: 0.1
+  fat: 81
+  fiber: 0
+  net_carbs: 0.1
+  sodium_mg: 11
+  calcium_mg: 24
+sources:
+  - 'USDA FDC #173410'

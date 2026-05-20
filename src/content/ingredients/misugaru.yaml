@@ -1,0 +1,13 @@
+name: Misugaru
+brand_assumption: 'Korean roasted multi-grain powder (rice, barley, beans, sesame)'
+roles: [grain-flour, flavor]
+units:
+  cup: 120
+  tbsp: 7.5
+nutrition_per_100g:
+  calories: 380
+  protein: 15
+  carbohydrate: 65
+  fat: 7
+  fiber: 8
+  net_carbs: 57
