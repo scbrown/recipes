@@ -8,6 +8,7 @@
   import NutritionPanel from './NutritionPanel.svelte';
   import MacroBar from './MacroBar.svelte';
   import ContributionDonut from './ContributionDonut.svelte';
+  import MicronutrientRadar from './MicronutrientRadar.svelte';
 
   type Props = { payload: RecipePayload };
   let { payload }: Props = $props();
@@ -182,6 +183,10 @@
   </aside>
 </div>
 
+<section class="micros">
+  <MicronutrientRadar nutrients={nutrition.perServing ?? nutrition.total} />
+</section>
+
 <style>
   .layout {
     display: grid;
@@ -285,5 +290,8 @@
     align-self: start;
     display: grid;
     gap: 1rem;
+  }
+  .micros {
+    margin-bottom: 3rem;
   }
 </style>

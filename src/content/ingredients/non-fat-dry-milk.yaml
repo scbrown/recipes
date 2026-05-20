@@ -14,5 +14,9 @@ nutrition_per_100g:
   sodium_mg: 535
   calcium_mg: 1257
   potassium_mg: 1794
+  magnesium_mg: 110
+  zinc_mg: 4.4
+  vitamin_b12_ug: 4.0
+  vitamin_d_ug: 0.6
 sources:
   - 'USDA FDC #170857'

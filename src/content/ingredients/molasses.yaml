@@ -15,5 +15,6 @@ nutrition_per_100g:
   calcium_mg: 205
   iron_mg: 4.7
   potassium_mg: 1464
+  magnesium_mg: 242
 sources:
   - 'USDA FDC #169655'

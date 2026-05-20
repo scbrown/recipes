@@ -14,4 +14,7 @@ nutrition_per_100g:
   net_carbs: 4
   sodium_mg: 200
   calcium_mg: 200
+  magnesium_mg: 35
+  zinc_mg: 4
+  vitamin_b12_ug: 1.2
 notes: 'Nutrition is brand-dependent; assumes 90% protein by weight.'

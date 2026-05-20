@@ -14,4 +14,7 @@ nutrition_per_100g:
   net_carbs: 0
   sodium_mg: 950
   iron_mg: 5
+  potassium_mg: 80
+  magnesium_mg: 90
+  zinc_mg: 3.5
 notes: 'Higher sodium and lower protein per gram than whey isolate.'

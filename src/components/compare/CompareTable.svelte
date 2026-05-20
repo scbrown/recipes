@@ -1,11 +1,12 @@
 <script lang="ts">
   import type { CompareRow } from '../../lib/compare.ts';
   import ScatterChart from './ScatterChart.svelte';
+  import { MICRO_DV, dvPercentRaw, type MicroKey } from '../../lib/micronutrients.ts';
 
   type Props = { rows: CompareRow[]; baseUrl: string };
   let { rows, baseUrl }: Props = $props();
 
-  type SortKey =
+  type MacroSortKey =
     | 'title'
     | 'calories'
     | 'protein'
@@ -14,11 +15,22 @@
     | 'fiber'
     | 'sodium_mg'
     | 'proteinPerHundredCal';
+  type SortKey = MacroSortKey | `micro:${MicroKey}`;
   type SortDir = 'asc' | 'desc';
+
+  const MICRO_COLUMNS: MicroKey[] = [
+    'calcium_mg',
+    'iron_mg',
+    'magnesium_mg',
+    'potassium_mg',
+    'zinc_mg',
+    'vitamin_b12_ug',
+  ];
 
   let sortKey = $state<SortKey>('calories');
   let sortDir = $state<SortDir>('desc');
   let activeTags = $state<string[]>([]);
+  let showMicros = $state(false);
 
   const allTags = $derived([...new Set(rows.flatMap((r) => r.tags))].sort());
 
@@ -31,6 +43,11 @@
   function nutrientValue(row: CompareRow, key: SortKey): number | null {
     if (key === 'title') return null;
     if (key === 'proteinPerHundredCal') return row.proteinPerHundredCal;
+    if (typeof key === 'string' && key.startsWith('micro:')) {
+      const microKey = key.slice('micro:'.length) as MicroKey;
+      const display = row.perServing ?? row.total;
+      return dvPercentRaw(display[microKey], microKey);
+    }
     const display = row.perServing ?? row.total;
     const v = display[key as keyof typeof display];
     return v ?? null;
@@ -99,6 +116,10 @@
   <p class="count muted">
     Showing {sorted.length} of {rows.length} recipes
   </p>
+  <label class="micros-toggle">
+    <input type="checkbox" bind:checked={showMicros} data-testid="show-micros-toggle" />
+    Show micronutrients (% Daily Value)
+  </label>
 </section>
 
 <section class="chart-section">
@@ -153,6 +174,15 @@
             >P / 100 cal{sortIndicator('proteinPerHundredCal')}</button
           ></th
         >
+        {#if showMicros}
+          {#each MICRO_COLUMNS as key (key)}
+            <th
+              ><button type="button" class="sort-btn" onclick={() => setSort(`micro:${key}`)}
+                >{MICRO_DV[key].label}{sortIndicator(`micro:${key}`)}</button
+              ></th
+            >
+          {/each}
+        {/if}
       </tr>
     </thead>
     <tbody>
@@ -170,10 +200,20 @@
           <td class="num">{fmt(d.fiber)} g</td>
           <td class="num">{fmt(d.sodium_mg)} mg</td>
           <td class="num">{fmt(row.proteinPerHundredCal)}</td>
+          {#if showMicros}
+            {#each MICRO_COLUMNS as key (key)}
+              {@const pct = dvPercentRaw(d[key], key)}
+              <td class="num">{pct === null ? '—' : `${Math.round(pct)}%`}</td>
+            {/each}
+          {/if}
         </tr>
       {/each}
       {#if sorted.length === 0}
-        <tr><td colspan="8" class="empty muted">No recipes match the selected tags.</td></tr>
+        <tr
+          ><td colspan={showMicros ? 8 + MICRO_COLUMNS.length : 8} class="empty muted"
+            >No recipes match the selected tags.</td
+          ></tr
+        >
       {/if}
     </tbody>
   </table>
@@ -221,6 +261,18 @@
   .count {
     margin: 0.75rem 0 0;
     font-size: 0.85rem;
+  }
+  .micros-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  .micros-toggle input {
+    accent-color: var(--color-accent);
   }
   .chart-section {
     margin-block: 3rem;

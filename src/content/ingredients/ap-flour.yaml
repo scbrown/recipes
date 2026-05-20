@@ -14,5 +14,7 @@ nutrition_per_100g:
   net_carbs: 73.6
   sodium_mg: 2
   iron_mg: 4.6
+  magnesium_mg: 22
+  zinc_mg: 0.7
 sources:
   - 'USDA FDC #168880'

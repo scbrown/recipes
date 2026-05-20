@@ -1,0 +1,28 @@
+name: Lighthouse
+
+on:
+  schedule:
+    # Weekly Monday 08:00 UTC.
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Lighthouse audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lighthouse against deployed site
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://scbrown.github.io/recipes/
+            https://scbrown.github.io/recipes/compare/
+            https://scbrown.github.io/recipes/recipes/crepes-pancakes-nougat/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: ./.lighthouserc.json

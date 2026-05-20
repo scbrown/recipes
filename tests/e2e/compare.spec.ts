@@ -35,4 +35,12 @@ test.describe('Compare page', () => {
     await expect(chart).toBeVisible();
     await expect(chart.locator('canvas')).toBeVisible();
   });
+
+  test('toggling micronutrients adds DV-percent columns', async ({ page }) => {
+    await page.goto(COMPARE_URL);
+    const headers = page.getByTestId('compare-table').locator('thead th');
+    const before = await headers.count();
+    await page.getByTestId('show-micros-toggle').check();
+    await expect(headers).toHaveCount(before + 6);
+  });
 });

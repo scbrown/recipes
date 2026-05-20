@@ -62,6 +62,13 @@ test.describe('Recipe page', () => {
     await expect(items.first()).toBeVisible();
   });
 
+  test('micronutrient radar renders for the default selection', async ({ page }) => {
+    await page.goto(RECIPE_URL);
+    const radar = page.getByTestId('micronutrient-radar');
+    await expect(radar).toBeVisible();
+    await expect(radar.locator('canvas')).toBeVisible();
+  });
+
   test('substitution radios are keyboard-operable', async ({ page }) => {
     await page.goto(RECIPE_URL);
     const protein = page.getByTestId('nutr-protein');

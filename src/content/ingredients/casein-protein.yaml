@@ -14,3 +14,6 @@ nutrition_per_100g:
   net_carbs: 8
   sodium_mg: 580
   calcium_mg: 1800
+  magnesium_mg: 25
+  zinc_mg: 2.8
+  vitamin_b12_ug: 2.0
