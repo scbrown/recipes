@@ -1,0 +1,17 @@
+name: Cranberry Juice Powder
+brand_assumption: 'Freeze-dried cranberry juice powder, no added sweeteners'
+roles: [juice-powder, polyphenol-source, flavor]
+units:
+  cup: 96
+  tbsp: 6
+  tsp: 3
+nutrition_per_100g:
+  calories: 350
+  protein: 1
+  carbohydrate: 86
+  fat: 0.5
+  fiber: 3
+  net_carbs: 83
+  sodium_mg: 20
+  potassium_mg: 600
+  calcium_mg: 60

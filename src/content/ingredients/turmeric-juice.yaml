@@ -1,0 +1,20 @@
+name: Fresh Turmeric Juice
+brand_assumption: 'Cold-pressed from fresh turmeric root, no additives'
+roles: [juice, liquid, anti-inflammatory, color]
+units:
+  cup: 245
+  tbsp: 15.3
+  tsp: 5.1
+  oz: 29.4
+  ml: 1.02
+nutrition_per_100g:
+  calories: 50
+  protein: 1.5
+  carbohydrate: 10
+  fat: 0.5
+  fiber: 1
+  net_carbs: 9
+  sodium_mg: 5
+  potassium_mg: 250
+  iron_mg: 2
+notes: 'Fresh juice retains volatile curcuminoids; pairs with piperine for absorption.'

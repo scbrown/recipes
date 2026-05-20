@@ -1,0 +1,12 @@
+name: Choline Bitartrate
+brand_assumption: 'Standard choline bitartrate supplement powder (~41% choline by weight)'
+roles: [supplement, nootropic]
+units:
+  tsp: 3
+  scoop: 1
+nutrition_per_100g:
+  calories: 0
+  protein: 0
+  carbohydrate: 0
+  fat: 0
+notes: 'Macros effectively zero at supplement doses. 500 mg yields about 205 mg choline.'

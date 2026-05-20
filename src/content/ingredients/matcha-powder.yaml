@@ -1,0 +1,20 @@
+name: Matcha Powder
+brand_assumption: 'Culinary or ceremonial grade Japanese matcha green tea'
+roles: [tea, caffeine-source, antioxidant, color]
+units:
+  cup: 80
+  tbsp: 5
+  tsp: 1.7
+nutrition_per_100g:
+  calories: 320
+  protein: 30
+  carbohydrate: 39
+  fat: 5.3
+  fiber: 38
+  net_carbs: 1
+  sodium_mg: 50
+  potassium_mg: 2700
+  calcium_mg: 420
+  iron_mg: 17
+  magnesium_mg: 230
+notes: 'Provides about 60–70 mg caffeine per 2 g; pairs with L-theanine for smooth alertness.'

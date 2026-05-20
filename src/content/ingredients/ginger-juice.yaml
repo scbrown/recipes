@@ -1,0 +1,20 @@
+name: Fresh Ginger Juice
+brand_assumption: 'Cold-pressed from fresh ginger root, no additives'
+roles: [juice, liquid, aromatic, anti-inflammatory]
+units:
+  cup: 245
+  tbsp: 15.3
+  tsp: 5.1
+  oz: 29.4
+  ml: 1.02
+nutrition_per_100g:
+  calories: 40
+  protein: 0.6
+  carbohydrate: 9
+  fat: 0.2
+  fiber: 0.5
+  net_carbs: 8.5
+  sodium_mg: 8
+  potassium_mg: 320
+  magnesium_mg: 15
+notes: 'Values approximated from fresh ginger root juice; potassium varies with cultivar.'

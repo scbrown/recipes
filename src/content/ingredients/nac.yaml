@@ -1,0 +1,12 @@
+name: N-Acetyl Cysteine (NAC)
+brand_assumption: 'Pharmaceutical-grade NAC powder, free-form'
+roles: [supplement, antioxidant-precursor]
+units:
+  tsp: 4
+  scoop: 1
+nutrition_per_100g:
+  calories: 0
+  protein: 0
+  carbohydrate: 0
+  fat: 0
+notes: 'Acts as a glutathione precursor; supplement dosing assumed (500 mg per serving).'

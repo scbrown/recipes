@@ -1,0 +1,20 @@
+name: Grass Juice Powder
+brand_assumption: 'Generic wheatgrass or barley grass juice powder'
+roles: [greens, chlorophyll, micronutrient-dense]
+units:
+  cup: 70
+  tbsp: 4.4
+  tsp: 2.5
+nutrition_per_100g:
+  calories: 340
+  protein: 22
+  carbohydrate: 50
+  fat: 5
+  fiber: 18
+  net_carbs: 32
+  sodium_mg: 50
+  calcium_mg: 350
+  iron_mg: 32
+  magnesium_mg: 110
+  potassium_mg: 1200
+  vitamin_b12_ug: 0

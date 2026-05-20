@@ -1,0 +1,18 @@
+name: Beet Juice Powder
+brand_assumption: 'Spray-dried beetroot juice powder, no added sugar'
+roles: [juice-powder, nitrate-source, color]
+units:
+  cup: 96
+  tbsp: 6
+  tsp: 3
+nutrition_per_100g:
+  calories: 360
+  protein: 5
+  carbohydrate: 81
+  fat: 0.5
+  fiber: 8
+  net_carbs: 73
+  sodium_mg: 800
+  potassium_mg: 2400
+  iron_mg: 4
+  magnesium_mg: 90

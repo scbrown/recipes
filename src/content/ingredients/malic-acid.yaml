@@ -1,0 +1,11 @@
+name: Malic Acid
+brand_assumption: 'Food-grade DL-malic acid powder'
+roles: [acid, flavor]
+units:
+  tbsp: 13
+  tsp: 4.3
+nutrition_per_100g:
+  calories: 244
+  carbohydrate: 60
+  fat: 0
+notes: 'Used in tiny quantities; participates in the Krebs cycle as a metabolic intermediate.'
