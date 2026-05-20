@@ -2,11 +2,14 @@ import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 
-// Update `site` and `base` when you know the GitHub Pages URL.
-// For project pages: site = 'https://<user>.github.io', base = '/<repo>'.
+// In CI on GitHub Pages, `actions/configure-pages` sets SITE and BASE_PATH.
+// Locally we fall back to a sensible default for the project page.
+const site = process.env.SITE ?? 'https://scbrown.github.io';
+const base = process.env.BASE_PATH ?? '/recipes';
+
 export default defineConfig({
-  site: 'https://scbrown.github.io',
-  base: '/recipes',
+  site,
+  base,
   trailingSlash: 'ignore',
   integrations: [svelte()],
   vite: {

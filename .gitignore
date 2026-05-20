@@ -30,5 +30,7 @@ Thumbs.db
 # test
 coverage/
 playwright-report/
+playwright/.cache/
 test-results/
 .vitest-cache/
+.playwright/

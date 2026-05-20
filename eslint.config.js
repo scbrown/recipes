@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
 import svelte from 'eslint-plugin-svelte';
+import svelteParser from 'svelte-eslint-parser';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 
@@ -12,6 +13,8 @@ export default tseslint.config(
       '.astro/',
       'node_modules/',
       'coverage/',
+      'playwright-report/',
+      'test-results/',
       '*.config.*',
       '.husky/',
       'pnpm-lock.yaml',
@@ -57,9 +60,26 @@ export default tseslint.config(
   },
   ...svelte.configs['flat/recommended'],
   {
+    files: ['**/*.svelte'],
+    languageOptions: {
+      parser: svelteParser,
+      parserOptions: {
+        parser: tseslint.parser,
+        extraFileExtensions: ['.svelte'],
+      },
+      globals: { ...globals.browser },
+    },
+  },
+  {
     files: ['scripts/**/*.{js,mjs}'],
     languageOptions: {
       globals: { ...globals.node },
+    },
+  },
+  {
+    files: ['tests/e2e/**/*.{ts,js}'],
+    rules: {
+      '@typescript-eslint/no-floating-promises': 'off',
     },
   },
 );
