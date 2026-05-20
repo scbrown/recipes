@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Search" description="Search across all recipes, ingredients, and notes.">
+  <header class="page-header">
+    <h1>Search</h1>
+    <p class="lede">
+      Full-text search over recipes, ingredients, and methodology notes. Powered by Pagefind.
+    </p>
+  </header>
+
+  <div id="search" data-testid="search-root"></div>
+</BaseLayout>
+
+<link href={`${base}/pagefind/pagefind-ui.css`} rel="stylesheet" />
+<script is:inline define:vars={{ base }}>
+  // Pagefind ships its own bundle from the deployed site. We load it on demand
+  // so static builds without the index still render the page without an error.
+  function init() {
+    if (!window.PagefindUI) return;
+    new window.PagefindUI({
+      element: '#search',
+      bundlePath: `${base}/pagefind/`,
+      showImages: false,
+      excerptLength: 25,
+    });
+  }
+  const script = document.createElement('script');
+  script.src = `${base}/pagefind/pagefind-ui.js`;
+  script.onload = init;
+  script.onerror = () => {
+    const el = document.getElementById('search');
+    if (el) {
+      el.innerHTML =
+        '<p class="muted">Search index has not been built yet. Run <code>pnpm build</code> followed by <code>pnpm pagefind</code>.</p>';
+    }
+  };
+  document.head.appendChild(script);
+</script>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+  .lede {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+    max-width: var(--measure-base);
+    margin-block: 0.5rem 0;
+  }
+  #search {
+    margin-top: 1.5rem;
+  }
+</style>

@@ -30,8 +30,10 @@ const fullTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
       <div class="container">
         <a href={import.meta.env.BASE_URL} class="brand">Recipes</a>
         <nav>
-          <a href={`${import.meta.env.BASE_URL}/recipes`}>All recipes</a>
+          <a href={`${import.meta.env.BASE_URL}/recipes`}>Recipes</a>
           <a href={`${import.meta.env.BASE_URL}/ingredients`}>Ingredients</a>
+          <a href={`${import.meta.env.BASE_URL}/compare`}>Compare</a>
+          <a href={`${import.meta.env.BASE_URL}/search`}>Search</a>
         </nav>
       </div>
     </header>

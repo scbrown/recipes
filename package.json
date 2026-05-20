@@ -9,7 +9,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pnpm pagefind",
+    "build:astro": "astro build",
+    "pagefind": "pagefind --site dist --output-subdir pagefind",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",
@@ -38,6 +40,7 @@
     "@astrojs/check": "^0.9.9",
     "@astrojs/svelte": "^8.1.1",
     "astro": "^6.3.3",
+    "chart.js": "^4.5.1",
     "svelte": "^5.55.7",
     "typescript": "^6.0.3",
     "zod": "^4.4.3"
@@ -61,6 +64,7 @@
     "knip": "^6.14.1",
     "lint-staged": "^17.0.5",
     "markdownlint-cli2": "^0.22.1",
+    "pagefind": "^1.5.2",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.5.2",

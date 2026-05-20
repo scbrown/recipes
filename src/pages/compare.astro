@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CompareTable from '../components/compare/CompareTable.svelte';
+import { buildCompareRow } from '../lib/compare.ts';
+
+const recipes = await getCollection('recipes', ({ data }) => !data.draft);
+const rows = await Promise.all(recipes.map(buildCompareRow));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Compare recipes"
+  description="Sort and compare all recipes by per-serving nutrition. Filter by tag and visualize protein efficiency."
+>
+  <header class="page-header">
+    <h1>Compare</h1>
+    <p class="lede">
+      All recipes side by side. Numbers are per default serving using each recipe's first
+      preparation variant and default ingredient choices.
+    </p>
+  </header>
+
+  <CompareTable {rows} baseUrl={base} client:load />
+
+  <style>
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .lede {
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      max-width: var(--measure-base);
+      margin-block: 0.5rem 0;
+    }
+  </style>
+</BaseLayout>
