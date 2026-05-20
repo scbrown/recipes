@@ -73,7 +73,12 @@ jobs:
 
   prose-lint:
     name: Vale prose lint
+    # github-pr-review reporter only works on PRs; skip on direct pushes.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: errata-ai/vale-action@reviewdog

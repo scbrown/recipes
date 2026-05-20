@@ -1,8 +1,12 @@
 import { test, expect } from '@playwright/test';
 
+// Astro's `base: '/recipes'` config means routes are served at `/recipes/<route>`.
+// The recipe page route is `/recipes/<id>/`, so the full URL is `/recipes/recipes/<id>/`.
+const RECIPE_URL = '/recipes/recipes/crepes-pancakes-nougat/';
+
 test.describe('Recipe page', () => {
   test('loads and renders ingredients with default nutrition', async ({ page }) => {
-    await page.goto('/recipes/crepes-pancakes-nougat');
+    await page.goto(RECIPE_URL);
     await expect(
       page.getByRole('heading', { name: 'Master Crepe, Pancake, and Nougat Mix' }),
     ).toBeVisible();
@@ -13,7 +17,7 @@ test.describe('Recipe page', () => {
   });
 
   test('switching protein substitution updates nutrition', async ({ page }) => {
-    await page.goto('/recipes/crepes-pancakes-nougat');
+    await page.goto(RECIPE_URL);
     const protein = page.getByTestId('nutr-protein');
     const before = await protein.textContent();
     await page.getByTestId('substitution-protein').getByLabel('Pea Protein Isolate').check();
@@ -21,7 +25,7 @@ test.describe('Recipe page', () => {
   });
 
   test('switching variant updates serving label and recomputes', async ({ page }) => {
-    await page.goto('/recipes/crepes-pancakes-nougat');
+    await page.goto(RECIPE_URL);
     const panel = page.getByTestId('nutrition-panel');
     const heading = panel.locator('h3');
     await expect(heading).toContainText('Per serving');
@@ -31,7 +35,7 @@ test.describe('Recipe page', () => {
   });
 
   test('toggling a flavor variant adds calories', async ({ page }) => {
-    await page.goto('/recipes/crepes-pancakes-nougat');
+    await page.goto(RECIPE_URL);
     const calories = page.getByTestId('nutr-calories');
     const before = Number(await calories.textContent());
     await page.getByTestId('flavor-picker').getByLabel('Cake Batter').check();
