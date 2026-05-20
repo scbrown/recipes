@@ -6,6 +6,8 @@
     resolvedIngredientLines,
   } from '../../lib/recipe-payload.ts';
   import NutritionPanel from './NutritionPanel.svelte';
+  import MacroBar from './MacroBar.svelte';
+  import ContributionDonut from './ContributionDonut.svelte';
 
   type Props = { payload: RecipePayload };
   let { payload }: Props = $props();
@@ -175,6 +177,8 @@
 
   <aside class="rail">
     <NutritionPanel {nutrition} serving={activeVariant?.serving} />
+    <MacroBar nutrients={nutrition.perServing ?? nutrition.total} />
+    <ContributionDonut contributions={nutrition.contributions} library={payload.library} />
   </aside>
 </div>
 
@@ -279,5 +283,7 @@
     position: sticky;
     top: 1.5rem;
     align-self: start;
+    display: grid;
+    gap: 1rem;
   }
 </style>

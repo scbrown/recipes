@@ -43,4 +43,33 @@ test.describe('Recipe page', () => {
       .poll(async () => Number(await calories.textContent()))
       .toBeGreaterThanOrEqual(before);
   });
+
+  test('macro bar and contribution donut render with default selection', async ({ page }) => {
+    await page.goto(RECIPE_URL);
+    await expect(page.getByTestId('macro-bar')).toBeVisible();
+    await expect(page.getByTestId('contribution-donut')).toBeVisible();
+    await expect(page.getByTestId('contribution-donut').locator('canvas')).toBeVisible();
+  });
+
+  test('switching the contribution nutrient updates the chart', async ({ page }) => {
+    await page.goto(RECIPE_URL);
+    const select = page.getByTestId('contribution-nutrient');
+    await select.selectOption('fat');
+    await expect(select).toHaveValue('fat');
+    // Top-ranked ingredient changes when the nutrient changes; we just assert
+    // the list still renders some entries.
+    const items = page.getByTestId('contribution-donut').locator('.ranked li');
+    await expect(items.first()).toBeVisible();
+  });
+
+  test('substitution radios are keyboard-operable', async ({ page }) => {
+    await page.goto(RECIPE_URL);
+    const protein = page.getByTestId('nutr-protein');
+    const before = await protein.textContent();
+    const radio = page.getByTestId('substitution-protein').getByLabel('Pea Protein Isolate');
+    await radio.focus();
+    await page.keyboard.press('Space');
+    await expect(radio).toBeChecked();
+    await expect(protein).not.toHaveText(before ?? '');
+  });
 });

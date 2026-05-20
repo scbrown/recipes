@@ -46,6 +46,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@cspell/dict-en_us": "^4.4.33",
     "@eslint/js": "^10.0.1",
     "@fontsource/inter": "^5.2.8",

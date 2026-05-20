@@ -37,8 +37,13 @@
     };
   }
 
+  let prefersReducedMotion = false;
+
   onMount(() => {
     if (!canvas) return;
+    if (typeof window !== 'undefined' && 'matchMedia' in window) {
+      prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
     Chart.register(ScatterController, PointElement, LinearScale, Tooltip, Title);
     chart = new Chart(canvas, {
       type: 'scatter',
@@ -46,7 +51,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 300 },
+        animation: prefersReducedMotion ? false : { duration: 300 },
         scales: {
           x: {
             type: 'linear',
