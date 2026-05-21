@@ -117,14 +117,17 @@ function main() {
 
     // Check ingredient role coverage
     const referencedIds = new Set();
+    const collectReferences = (item) => {
+      if ('id' in item) referencedIds.add(item.id);
+      if ('default' in item) {
+        referencedIds.add(item.default);
+        for (const alt of item.alternatives ?? []) referencedIds.add(alt.id);
+      }
+    };
     for (const recipe of recipes) {
       for (const [idx, item] of (recipe.data.ingredients ?? []).entries()) {
         checkRecipeIngredient(item, recipe.id, ingredients, `ingredients[${idx}]`);
-        if ('id' in item) referencedIds.add(item.id);
-        if ('default' in item) {
-          referencedIds.add(item.default);
-          for (const alt of item.alternatives ?? []) referencedIds.add(alt.id);
-        }
+        collectReferences(item);
       }
       for (const [vi, variant] of (recipe.data.variants ?? []).entries()) {
         for (const [ai, addition] of (variant.additions ?? []).entries()) {
@@ -134,7 +137,7 @@ function main() {
             ingredients,
             `variants[${vi}].additions[${ai}]`,
           );
-          if ('id' in addition) referencedIds.add(addition.id);
+          collectReferences(addition);
         }
       }
       for (const [fi, flavor] of (recipe.data.flavors ?? []).entries()) {
@@ -145,7 +148,7 @@ function main() {
             ingredients,
             `flavors[${fi}].additions[${ai}]`,
           );
-          if ('id' in addition) referencedIds.add(addition.id);
+          collectReferences(addition);
         }
       }
     }

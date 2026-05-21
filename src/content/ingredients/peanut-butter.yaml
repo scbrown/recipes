@@ -1,0 +1,22 @@
+name: Creamy Peanut Butter
+brand_assumption: 'Generic commercial creamy peanut butter (peanuts + salt + small amount of sugar/stabilizer)'
+roles: [peanut, fat, binder, flavor]
+units:
+  cup: 258
+  tbsp: 16
+  tsp: 5.3
+nutrition_per_100g:
+  calories: 588
+  protein: 25
+  carbohydrate: 20
+  fat: 50
+  fiber: 6
+  net_carbs: 14
+  sodium_mg: 350
+  calcium_mg: 49
+  iron_mg: 1.9
+  potassium_mg: 649
+  magnesium_mg: 168
+  zinc_mg: 2.8
+sources:
+  - 'USDA FDC #172470'

@@ -45,6 +45,30 @@ variants:
         quantity: { amount: 2, unit: tbsp }
       - id: vanilla-extract
         quantity: { amount: 1, unit: tsp }
+  - id: fresh-fudgy
+    name: Fresh Fudgy (No Egg-White Powder)
+    serving: 'Filling for 1 crepe (~15 g)'
+    yields_servings: 4
+    additions:
+      - id: pb2
+        quantity: { amount: 3, unit: tbsp }
+      - id: potato-starch
+        quantity: { amount: 1, unit: tbsp }
+      - role: sweetener
+        quantity: { amount: 2, unit: tbsp }
+        default: allulose
+        alternatives:
+          - id: brown-sugar
+            quantity: { amount: 2, unit: tbsp }
+      - id: mct-powder
+        quantity: { amount: 1, unit: tbsp }
+      - role: binder
+        quantity: { amount: 1, unit: tbsp }
+        default: peanut-butter
+        alternatives:
+          - id: greek-yogurt
+            quantity: { amount: 1, unit: tbsp }
+            note: 'Brighter, tarter, lower in fat than the peanut butter binder.'
 ---
 
 Two preparations from a small powder pantry. The dense fudgy version is the
@@ -72,14 +96,20 @@ PB2 and vanilla at the end so the foam doesn't collapse.
 Use immediately — the foam slowly weeps as it sits. A second short whip just
 before serving rescues a settled batch.
 
-## Fresh variant (no egg-white powder)
+## Fresh fudgy (no egg-white powder)
 
-In the dense-and-fudgy formulation, replace the egg-white powder **and** the
-water with **1 tbsp creamy peanut butter or 1 tbsp Greek yogurt** as the binder.
-The peanut butter version is richer; the yogurt version is brighter and tarter.
+The fresh-fudgy variant replaces the egg-white powder and water of the master
+filling with **1 tbsp creamy peanut butter** (default) or **1 tbsp Greek
+yogurt** as the binder. Switch between the two using the substitution control
+on the recipe page — nutrition recomputes on the fly.
 
-Nutrition computation in the recipe panel does not include this variant —
-peanut butter and Greek yogurt aren't in the structured ingredient library yet.
+- **Peanut butter binder.** Richer, fattier, holds together like a soft dough.
+  Best for stack-and-cut applications.
+- **Greek yogurt binder.** Brighter and tarter, softer texture, weeps slightly
+  if left sitting. Best for fillings used the same day.
+
+Whisk the dry powders together first, then fold the binder in until the mixture
+pulls into one mass. No water is needed — the binder provides all the moisture.
 
 ## Pairing
 

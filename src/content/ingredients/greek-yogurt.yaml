@@ -1,0 +1,21 @@
+name: Plain Non-Fat Greek Yogurt
+brand_assumption: 'Strained non-fat plain Greek yogurt, unsweetened (Fage 0% / Chobani non-fat)'
+roles: [dairy, binder, protein]
+units:
+  cup: 245
+  tbsp: 15
+  tsp: 5
+  oz: 28
+nutrition_per_100g:
+  calories: 59
+  protein: 10.2
+  carbohydrate: 3.6
+  fat: 0.4
+  fiber: 0
+  net_carbs: 3.6
+  sodium_mg: 36
+  calcium_mg: 110
+  potassium_mg: 141
+  magnesium_mg: 11
+sources:
+  - 'USDA FDC #170894'
