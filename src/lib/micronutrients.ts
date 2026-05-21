@@ -38,8 +38,7 @@ export const MICRO_KEYS: MicroKey[] = [
   'vitamin_d_ug',
 ];
 
-/** Percent of daily value for a single nutrient, clamped at 100 for chart use. */
-export function dvPercent(amount: number | undefined, key: MicroKey): number | null {
+function dvPercent(amount: number | undefined, key: MicroKey): number | null {
   if (amount === undefined) return null;
   const ref = MICRO_DV[key];
   return Math.min(100, (amount / ref.dv) * 100);

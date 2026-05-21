@@ -73,8 +73,7 @@ export function scaleNutrients(per100g: Nutrients, grams: number): Nutrients {
   return (out.calories === undefined ? { ...out, calories: 0 } : out) as Nutrients;
 }
 
-/** Round to a sensible number of decimals (0.1 for grams, 1 for calories). */
-export function round(n: number): number {
+function round(n: number): number {
   return Math.round(n * 10) / 10;
 }
 

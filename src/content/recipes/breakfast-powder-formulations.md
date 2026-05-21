@@ -2,6 +2,7 @@
 title: Custom Breakfast Shake & Porridge Formulations
 tags: [breakfast, high-protein, sugar-free, modernist]
 summary: Low-GI, high-protein powdered breakfasts with a milk-like mouthfeel using water as the only liquid.
+yields: '1 portion per batch (choose travel shake or drinkable porridge)'
 
 ingredients:
   - role: protein

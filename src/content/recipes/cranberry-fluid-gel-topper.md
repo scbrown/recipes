@@ -52,5 +52,5 @@ silky foam that floats on top of other liquids.
 
 ## Pairs well with
 
-[Cranberry Agar Pearls](/recipes/cranberry-agar-pearls) — use the fluid gel as a
-suspension medium so the pearls hover throughout a drink rather than sinking.
+- [Cranberry Agar Pearls](/recipes/cranberry-agar-pearls) — use the fluid gel as a suspension medium so the pearls hover throughout a drink rather than sinking.
+- [Sparkling Cranberry Shrub](/recipes/sparkling-cranberry-shrub) — float the gel on top for a layered presentation.

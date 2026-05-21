@@ -54,4 +54,5 @@ and provide textural contrast in cold and warm drinks alike.
 
 ## Pairs well with
 
-[Cranberry Fluid Gel Topper](/recipes/cranberry-fluid-gel-topper).
+- [Cranberry Fluid Gel Topper](/recipes/cranberry-fluid-gel-topper) — suspension medium that keeps pearls floating.
+- [Sparkling Cranberry Shrub](/recipes/sparkling-cranberry-shrub) — the assembled drink that uses both components.

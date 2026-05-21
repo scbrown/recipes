@@ -2,14 +2,10 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": [
     "src/pages/**/*.astro",
-    "src/content.config.ts",
-    "astro.config.mjs",
-    "playwright.config.ts",
-    "vitest.config.ts",
     "tests/**/*.test.ts",
     "tests/e2e/**/*.spec.ts",
     "scripts/*.mjs"
   ],
   "project": ["src/**/*.{ts,tsx,astro,svelte,js,mjs}"],
-  "ignore": ["dist/**", ".astro/**"]
+  "ignoreDependencies": ["@cspell/dict-en_us", "tailwindcss"]
 }
