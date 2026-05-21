@@ -118,15 +118,3 @@ This shot contains supplements (NAC, choline bitartrate) and a concentrated
 iodine source (kelp). Stay within the listed amounts. If you take
 medications or have a thyroid condition, check with a clinician before
 making this a daily habit.
-
-## Medication timing
-
-### Blood pressure medication
-
-- **Beet juice powder** (dietary nitrates → nitric oxide), **ginger**,
-  **turmeric**, and **moringa** can all lower blood pressure modestly.
-  Stacked daily, they may amplify the effect of antihypertensives.
-- Spacing matters less here than cumulative effect. Watch for symptoms
-  of over-treatment (lightheadedness on standing, unusual fatigue) and
-  share the daily stack with your prescriber so dose adjustments can be
-  made if needed.
