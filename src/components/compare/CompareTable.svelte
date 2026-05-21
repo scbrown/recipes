@@ -245,13 +245,13 @@
     padding: 0.25rem 0.6rem;
     background: var(--color-code-bg);
     color: var(--color-muted);
-    border: 1px solid transparent;
-    border-radius: 2px;
+    border: 1px solid var(--color-rule);
+    border-radius: 0;
     cursor: pointer;
   }
   .tag-button.active {
     background: var(--color-accent);
-    color: white;
+    color: var(--color-bg);
     border-color: var(--color-accent);
   }
   .clear-button {
@@ -288,7 +288,7 @@
   .table-wrapper {
     overflow-x: auto;
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 0;
     background: var(--color-card);
   }
   table {

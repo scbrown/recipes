@@ -160,7 +160,7 @@
   .contribution-card {
     background: var(--color-card);
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 0;
     padding: 1.25rem 1.5rem;
   }
   header {
@@ -183,7 +183,7 @@
     font-size: 0.85rem;
     padding: 0.25rem 0.5rem;
     border: 1px solid var(--color-rule);
-    border-radius: 3px;
+    border-radius: 0;
     background: var(--color-bg);
   }
   .chart-wrap {
@@ -208,7 +208,7 @@
   .swatch {
     width: 0.75rem;
     height: 0.75rem;
-    border-radius: 2px;
+    border-radius: 0;
     display: inline-block;
   }
   .name {

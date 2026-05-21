@@ -241,7 +241,7 @@
   }
   .picker {
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 0;
     padding: 0.75rem 1rem;
     margin: 0;
     display: grid;
@@ -251,8 +251,10 @@
   legend {
     text-transform: uppercase;
     font-size: 0.72rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     padding: 0 0.5rem;
+    color: var(--color-accent);
+    background: var(--color-bg);
   }
   .option {
     display: flex;

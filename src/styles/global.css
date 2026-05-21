@@ -1,31 +1,48 @@
 @import url('tailwindcss');
 
 @theme {
-  --color-bg: #fdfcf8;
-  --color-fg: #1f1d1a;
-  --color-muted: #6b675f;
-  --color-accent: #8b2a1f;
-  --color-accent-soft: #c8503f;
-  --color-rule: #e7e3d8;
-  --color-card: #fff;
-  --color-code-bg: #f1eee5;
-  --font-body: 'Source Serif 4', georgia, 'Times New Roman', serif;
-  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', menlo, monospace;
-  --measure-base: 64ch;
-  --radius-base: 4px;
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 4%), 0 4px 12px rgb(0 0 0 / 4%);
+  /* Stainless-steel commercial palette */
+  --color-bg: #1a1c1e;
+  --color-surface: #26292c;
+  --color-surface-raised: #2d3034;
+  --color-steel-100: #e6e8ea;
+  --color-steel-200: #cfd3d7;
+  --color-steel-300: #b8bcc0;
+  --color-steel-400: #989ea3;
+  --color-steel-500: #7a8085;
+  --color-steel-600: #5a6065;
+  --color-steel-700: #3a3e42;
+  --color-steel-800: #26292c;
+  --color-steel-900: #1a1c1e;
+  --color-fg: #e6e8ea;
+  --color-muted: #989ea3;
+  --color-accent: #ff4f00;
+  --color-accent-soft: #ff7340;
+  --color-warning: #f5a623;
+  --color-burner-blue: #2a6fdb;
+  --color-rule: #3a3e42;
+  --color-card: #26292c;
+  --color-card-edge: #3a3e42;
+  --color-code-bg: #1a1c1e;
+
+  /* Single industrial mono family across the site */
+  --font-body: 'Intel One Mono', ui-monospace, 'SF Mono', menlo, monospace;
+  --font-ui: 'Intel One Mono', ui-monospace, 'SF Mono', menlo, monospace;
+  --font-mono: 'Intel One Mono', ui-monospace, 'SF Mono', menlo, monospace;
+  --measure-base: 68ch;
+  --radius-base: 0;
+  --shadow-card: inset 0 1px 0 rgb(255 255 255 / 4%), 0 1px 0 rgb(0 0 0 / 60%);
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
@@ -33,6 +50,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  background-image:
+    linear-gradient(180deg, rgb(255 255 255 / 1.5%) 0%, transparent 240px),
+    repeating-linear-gradient(90deg, transparent 0 3px, rgb(255 255 255 / 1%) 3px 4px);
 }
 
 h1,
@@ -43,61 +63,101 @@ h5,
 h6 {
   font-family: var(--font-body);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-steel-100);
 }
 
 h1 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
   margin-block: 0 0.5em;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.6em;
+  display: inline-block;
 }
 
 h2 {
-  font-size: 1.5rem;
-  margin-block: 2em 0.5em;
+  font-size: 1.05rem;
+  margin-block: 2.4em 0.6em;
+  letter-spacing: 0.08em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--color-rule);
+  color: var(--color-steel-200);
+}
+
+h2::before {
+  content: '/ ';
+  color: var(--color-accent);
 }
 
 h3 {
-  font-size: 1.2rem;
-  margin-block: 1.5em 0.5em;
+  font-size: 0.92rem;
+  margin-block: 1.8em 0.4em;
+  letter-spacing: 0.1em;
+  color: var(--color-steel-300);
+}
+
+h3::before {
+  content: '— ';
+  color: var(--color-steel-500);
+}
+
+p,
+li {
+  font-variant-numeric: tabular-nums;
+}
+
+strong,
+b {
+  color: var(--color-steel-100);
+  font-weight: 600;
 }
 
 a {
   color: var(--color-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration: none;
+  border-bottom: 1px solid currentcolor;
+  padding-bottom: 1px;
+  font-weight: 500;
 }
 
 a:hover {
   color: var(--color-accent-soft);
+  background: rgb(255 79 0 / 8%);
 }
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.92em;
+  font-size: 0.95em;
   background: var(--color-code-bg);
-  padding: 0.1em 0.35em;
-  border-radius: var(--radius-base);
+  border: 1px solid var(--color-rule);
+  padding: 0.05em 0.4em;
+  color: var(--color-steel-100);
 }
 
 pre {
   font-family: var(--font-mono);
   background: var(--color-code-bg);
+  border: 1px solid var(--color-rule);
   padding: 1rem;
   overflow-x: auto;
-  border-radius: var(--radius-base);
+  color: var(--color-steel-100);
 }
 
 pre code {
   background: transparent;
   padding: 0;
+  border: 0;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--font-ui);
   font-variant-numeric: tabular-nums;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
 }
 
 th,
@@ -109,15 +169,26 @@ td {
 
 th {
   font-weight: 600;
-  color: var(--color-muted);
-  font-size: 0.85rem;
+  color: var(--color-steel-300);
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
+  background: var(--color-surface-raised);
+  border-bottom: 2px solid var(--color-accent);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover {
+  background: var(--color-surface-raised);
 }
 
 hr {
   border: 0;
   border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid #000;
   margin-block: 2rem;
 }
 
@@ -131,16 +202,65 @@ hr {
   margin-block: 1em;
 }
 
-.ui {
-  font-family: var(--font-ui);
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
 }
 
+.prose li::marker {
+  color: var(--color-accent);
+}
+
+.prose li {
+  margin-block: 0.35em;
+}
+
+.ui,
 .mono {
   font-family: var(--font-mono);
 }
 
 .muted {
   color: var(--color-muted);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+input,
+select,
+button,
+textarea {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  background: var(--color-surface);
+  color: var(--color-fg);
+  border: 1px solid var(--color-rule);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0;
+}
+
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

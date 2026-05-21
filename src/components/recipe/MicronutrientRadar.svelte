@@ -29,9 +29,9 @@
         {
           label: '% Daily Value',
           data: s.map((x) => Math.round(x.value)),
-          backgroundColor: 'rgb(139 42 31 / 20%)',
-          borderColor: 'rgb(139 42 31)',
-          pointBackgroundColor: 'rgb(139 42 31)',
+          backgroundColor: 'rgb(255 79 0 / 18%)',
+          borderColor: 'rgb(255 79 0)',
+          pointBackgroundColor: 'rgb(255 79 0)',
           pointRadius: 3,
         },
       ],
@@ -55,10 +55,13 @@
           r: {
             beginAtZero: true,
             max: 100,
-            ticks: { stepSize: 25, color: 'rgb(107 103 95)', backdropColor: 'transparent' },
-            grid: { color: 'rgb(231 227 216)' },
-            angleLines: { color: 'rgb(231 227 216)' },
-            pointLabels: { font: { size: 11 }, color: 'rgb(31 29 26)' },
+            ticks: { stepSize: 25, color: 'rgb(122 128 133)', backdropColor: 'transparent' },
+            grid: { color: 'rgb(58 62 66)' },
+            angleLines: { color: 'rgb(58 62 66)' },
+            pointLabels: {
+              font: { size: 11, family: "'Intel One Mono', ui-monospace, monospace" },
+              color: 'rgb(207 211 215)',
+            },
           },
         },
         plugins: {
@@ -134,7 +137,7 @@
   .radar-card {
     background: var(--color-card);
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 0;
     padding: 1.5rem;
   }
   header {

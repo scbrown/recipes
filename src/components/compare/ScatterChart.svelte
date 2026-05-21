@@ -28,8 +28,8 @@
                 id: r.id,
               };
             }),
-          backgroundColor: 'rgb(139 42 31 / 70%)',
-          borderColor: 'rgb(139 42 31)',
+          backgroundColor: 'rgb(255 79 0 / 70%)',
+          borderColor: 'rgb(255 79 0)',
           pointRadius: 6,
           pointHoverRadius: 9,
         },
@@ -55,13 +55,31 @@
         scales: {
           x: {
             type: 'linear',
-            title: { display: true, text: 'Calories per serving' },
-            grid: { color: 'rgb(231 227 216)' },
+            title: {
+              display: true,
+              text: 'Calories per serving',
+              color: 'rgb(207 211 215)',
+              font: { family: "'Intel One Mono', ui-monospace, monospace" },
+            },
+            grid: { color: 'rgb(58 62 66)' },
+            ticks: {
+              color: 'rgb(122 128 133)',
+              font: { family: "'Intel One Mono', ui-monospace, monospace" },
+            },
           },
           y: {
             type: 'linear',
-            title: { display: true, text: 'Protein per serving (g)' },
-            grid: { color: 'rgb(231 227 216)' },
+            title: {
+              display: true,
+              text: 'Protein per serving (g)',
+              color: 'rgb(207 211 215)',
+              font: { family: "'Intel One Mono', ui-monospace, monospace" },
+            },
+            grid: { color: 'rgb(58 62 66)' },
+            ticks: {
+              color: 'rgb(122 128 133)',
+              font: { family: "'Intel One Mono', ui-monospace, monospace" },
+            },
             beginAtZero: true,
           },
         },
@@ -113,7 +131,7 @@
     height: 360px;
     background: var(--color-card);
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 0;
     padding: 1rem;
   }
 </style>

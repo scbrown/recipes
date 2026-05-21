@@ -58,20 +58,32 @@
   .nutrition-card {
     background: var(--color-card);
     border: 1px solid var(--color-rule);
-    border-radius: 4px;
-    padding: 1.25rem 1.5rem;
-    box-shadow:
-      0 1px 2px rgb(0 0 0 / 4%),
-      0 4px 12px rgb(0 0 0 / 4%);
-    font-family: var(--font-ui);
+    border-radius: 0;
+    padding: 1.1rem 1.25rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+    font-family: var(--font-mono);
+    position: relative;
+  }
+  .nutrition-card::before {
+    content: 'NTR / PANEL';
+    position: absolute;
+    top: -0.6rem;
+    left: 1rem;
+    background: var(--color-bg);
+    padding: 0 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
   }
   h3 {
     margin-block: 0 0.75rem;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-muted);
+    letter-spacing: 0.1em;
+    color: var(--color-steel-300);
     font-weight: 600;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 0.5rem;
   }
   dl {
     margin: 0;
