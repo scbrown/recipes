@@ -9,7 +9,8 @@ The deployed site is hosted on GitHub Pages from the `main` branch.
 
 ## Recipes in this collection
 
-- [Master Crepe, Pancake, and Nougat Mix](src/content/recipes/crepes-pancakes-nougat.md)
+- [Master Crepe and Pancake Mix](src/content/recipes/crepes-pancakes-nougat.md)
+- [Crepe Nougat Fillings](src/content/recipes/nougat-fillings.md)
 - [Cranberry Fluid Gel Topper](src/content/recipes/cranberry-fluid-gel-topper.md)
 - [Cranberry Agar Pearls](src/content/recipes/cranberry-agar-pearls.md)
 - [Custom Breakfast Shake & Porridge Formulations](src/content/recipes/breakfast-powder-formulations.md)

@@ -15,11 +15,8 @@ ingredients:
     quantity: { amount: 1, unit: tsp }
     note: "Mustard's natural lecithin assists the emulsion."
   - id: butter
-    quantity: { amount: 1, unit: tbsp }
-    note: 'For sautéing aromatics — kept separate from the cold finishing butter.'
-  - id: butter
-    quantity: { amount: 3, unit: tbsp }
-    note: 'Refrigerator-cold, cubed; mounted off heat at the end.'
+    quantity: { amount: 4, unit: tbsp }
+    note: 'Split into 1 tbsp for sautéing aromatics (step 2) and 3 tbsp cold cubed for mounting off heat (step 4).'
   - id: minced-garlic
     quantity: { amount: 1.5, unit: tsp }
   - id: black-pepper

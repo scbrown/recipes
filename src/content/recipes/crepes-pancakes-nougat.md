@@ -1,7 +1,7 @@
 ---
-title: Master Crepe, Pancake, and Nougat Mix
+title: Master Crepe and Pancake Mix
 tags: [breakfast, high-protein, master-mix, modernist]
-summary: A shelf-stable master mix that produces both pancakes and crepes, plus two nougat filling variations.
+summary: A shelf-stable master mix that produces both pancakes and crepes from the same base, with flavor variants and a separate set of nougat fillings.
 yields: '6 cups dry mix'
 
 ingredients:
@@ -93,24 +93,6 @@ optionally stack a flavor variant on top.
 
 ## Nougat fillings (optional)
 
-### Dense and fudgy
-
-- 3 tbsp PB2
-- 1 tbsp egg white powder
-- 1 tbsp potato starch
-- 2 tbsp allulose
-- 1 tbsp MCT powder
-- 1.5 to 2 tsp water (adjust for density)
-
-### Quick fluff
-
-- 2 tbsp egg white powder
-- 1/4 cup warm water
-- 1/4 cup allulose
-- 2 tbsp PB2
-- 1 tsp vanilla extract
-
-### Fresh variant
-
-Replace the egg white powder and water in the dense filling with 1 tbsp creamy
-peanut butter or Greek yogurt as the binder.
+The nougat fillings — dense-and-fudgy and quick-fluff styles, plus a fresh
+peanut-butter or yogurt variant — live in their own recipe with full nutrition:
+[Crepe Nougat Fillings](/recipes/nougat-fillings).

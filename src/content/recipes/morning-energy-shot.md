@@ -20,7 +20,7 @@ ingredients:
     quantity: { amount: 1, unit: tsp }
   - id: moringa-powder
     quantity: { amount: 1, unit: tsp }
-    note: 'Broad micronutrient and antioxidant boost. See medication timing notes below.'
+    note: 'Broad micronutrient and antioxidant boost.'
   - id: cranberry-juice-powder
     quantity: { amount: 1, unit: tsp }
     note: 'Masks the sulfuric NAC notes and the oceanic kelp finish.'

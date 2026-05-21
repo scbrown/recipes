@@ -1,7 +1,7 @@
 ---
 title: Custom Breakfast Shake & Porridge Formulations
 tags: [breakfast, high-protein, sugar-free, modernist]
-summary: Low-GI, high-protein powdered breakfasts with a milk-like mouthfeel using water and espresso.
+summary: Low-GI, high-protein powdered breakfasts with a milk-like mouthfeel using water as the only liquid.
 
 ingredients:
   - role: protein
@@ -84,13 +84,13 @@ and a drinkable porridge with a heavier, meal-replacement consistency.
 
 - **Dry blend.** Whisk all powders thoroughly. Use a blade grinder for the chia
   in short pulses to avoid heat.
-- **Liquid.** Mix with 10 to 12 oz of water plus a fresh espresso shot.
+- **Liquid.** Mix with 10 to 12 oz of cold water.
 - **Temperature note.** If using egg white powder, keep the liquid below 60°C
   to prevent partial cooking.
 
 ## Drinkable porridge preparation
 
-- Heat water and espresso to 65°C.
+- Heat water to 65°C.
 - Whisk Cream of Rice, misugaru, and banana flower powder into the liquid first.
 - Let sit in a thermal flask for 3 to 5 minutes to soften the rice.
 - Add remaining protein and thickeners last to maintain smoothness.
