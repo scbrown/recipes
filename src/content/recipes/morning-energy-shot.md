@@ -121,24 +121,6 @@ making this a daily habit.
 
 ## Medication timing
 
-Several ingredients can interact with common daily medications. Confirm
-specifics with your prescriber, but the practical rule is to **drink the
-shot at least 4 hours away from the affected medication dose** — taking
-the shot in the late morning or early afternoon works for most schedules.
-
-### Thyroid medication (e.g. levothyroxine)
-
-- **Calcium and iron** in moringa, matcha, grass juice powder, and kelp
-  bind levothyroxine in the gut and reduce its absorption — the same
-  reason dairy, calcium supplements, and iron supplements are kept away
-  from the morning thyroid dose.
-- **Kelp** contributes iodine that can shift thyroid hormone levels over
-  time. Keeping kelp at or below 1/8 tsp daily is important; consider a
-  TSH check 6–8 weeks after starting daily use.
-- **Moringa leaf** has shown thyroid-modulating effects in animal
-  studies. Effect in humans at culinary doses is unclear, but the safer
-  approach is consistent spacing plus a follow-up TSH.
-
 ### Blood pressure medication
 
 - **Beet juice powder** (dietary nitrates → nitric oxide), **ginger**,

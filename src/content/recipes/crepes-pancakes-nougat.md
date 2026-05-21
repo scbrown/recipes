@@ -114,13 +114,3 @@ optionally stack a flavor variant on top.
 
 Replace the egg white powder and water in the dense filling with 1 tbsp creamy
 peanut butter or Greek yogurt as the binder.
-
-## Medication timing
-
-The master mix is calcium-dense (non-fat dry milk plus whey or casein
-protein), and the malted-morning flavor adds more. Calcium binds
-**levothyroxine** in the gut and reduces absorption. When eating these
-for breakfast, take the thyroid dose on an empty stomach first and wait
-at least **30–60 minutes** before eating. Greek yogurt in the fresh
-nougat variant has the same effect; the agar pearls, fluid gel, and
-plain allulose/egg-white fillings do not.
