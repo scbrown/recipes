@@ -1,0 +1,12 @@
+name: Sparkling Water
+brand_assumption: 'Unflavored, unsweetened carbonated water (Topo Chico / La Croix plain / club soda)'
+roles: [liquid, carbonated]
+units:
+  cup: 237
+  tbsp: 14.8
+  tsp: 5
+  oz: 28.4
+  ml: 1
+nutrition_per_100g:
+  calories: 0
+notes: 'Nutritionally equivalent to water; the carbonation is the functional ingredient. Club soda adds trace sodium (~20 mg per 8 oz); plain seltzer or mineral sparkling water adds essentially none.'
