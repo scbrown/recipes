@@ -100,3 +100,14 @@ and a drinkable porridge with a heavier, meal-replacement consistency.
 - **Cake batter.** Add butter extract and a pinch of citric acid.
 - **Malted morning.** Add malted milk powder.
 - **Vanilla cream.** Mix vanilla extract into the dry base blend.
+
+## Medication timing
+
+Both preparations are calcium-dense — whey or casein protein, misugaru,
+and (in the malted flavor) malted milk powder all contribute calcium
+that binds **levothyroxine** in the gut and lowers its absorption. If
+this is your morning meal, take your thyroid dose on an empty stomach
+first and wait at least **30–60 minutes before the shake or porridge**
+(the standard levothyroxine-with-food rule). A full 4-hour gap is only
+required when stacking with concentrated calcium or iron sources such as
+the morning energy shot.

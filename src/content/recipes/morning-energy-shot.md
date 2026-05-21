@@ -18,6 +18,9 @@ ingredients:
     quantity: { amount: 1, unit: tsp }
   - id: beet-juice-powder
     quantity: { amount: 1, unit: tsp }
+  - id: moringa-powder
+    quantity: { amount: 1, unit: tsp }
+    note: 'Broad micronutrient and antioxidant boost. See medication timing notes below.'
   - id: cranberry-juice-powder
     quantity: { amount: 1, unit: tsp }
     note: 'Masks the sulfuric NAC notes and the oceanic kelp finish.'
@@ -115,3 +118,33 @@ This shot contains supplements (NAC, choline bitartrate) and a concentrated
 iodine source (kelp). Stay within the listed amounts. If you take
 medications or have a thyroid condition, check with a clinician before
 making this a daily habit.
+
+## Medication timing
+
+Several ingredients can interact with common daily medications. Confirm
+specifics with your prescriber, but the practical rule is to **drink the
+shot at least 4 hours away from the affected medication dose** — taking
+the shot in the late morning or early afternoon works for most schedules.
+
+### Thyroid medication (e.g. levothyroxine)
+
+- **Calcium and iron** in moringa, matcha, grass juice powder, and kelp
+  bind levothyroxine in the gut and reduce its absorption — the same
+  reason dairy, calcium supplements, and iron supplements are kept away
+  from the morning thyroid dose.
+- **Kelp** contributes iodine that can shift thyroid hormone levels over
+  time. Keeping kelp at or below 1/8 tsp daily is important; consider a
+  TSH check 6–8 weeks after starting daily use.
+- **Moringa leaf** has shown thyroid-modulating effects in animal
+  studies. Effect in humans at culinary doses is unclear, but the safer
+  approach is consistent spacing plus a follow-up TSH.
+
+### Blood pressure medication
+
+- **Beet juice powder** (dietary nitrates → nitric oxide), **ginger**,
+  **turmeric**, and **moringa** can all lower blood pressure modestly.
+  Stacked daily, they may amplify the effect of antihypertensives.
+- Spacing matters less here than cumulative effect. Watch for symptoms
+  of over-treatment (lightheadedness on standing, unusual fatigue) and
+  share the daily stack with your prescriber so dose adjustments can be
+  made if needed.
