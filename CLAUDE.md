@@ -85,3 +85,7 @@ When editing a recipe's structured slots: a unit used in a `quantity` must exist
 - Branded `IngredientId` / `RecipeId` types in `content.config.ts` mean ingredient and recipe IDs are not interchangeable at the type level — don't widen them to `string` in new APIs.
 - `astro:content` types are generated into `.astro/`; if types look wrong after a content edit, `pnpm typecheck` regenerates them.
 - The deploy branch is `main`; CI on every non-main branch runs the full lint/typecheck/validate/build/test pipeline.
+
+## Workflow preferences (owner-set)
+
+- **Push directly to `main`.** The owner has opted into pushing changes straight to `main` for this repo. When a session is started on a feature branch, fast-forward `main` to it and push `main` before ending. Don't open a PR unless explicitly asked. This overrides the "prefer PRs" guidance in `docs/plan.md`. Pushing to `main` triggers `deploy.yml` and publishes to GitHub Pages.
