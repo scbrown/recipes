@@ -163,3 +163,8 @@ umami
 glutamate
 monosodium
 pomegranate
+habanero
+habaneros
+chile
+chiles
+Scoville

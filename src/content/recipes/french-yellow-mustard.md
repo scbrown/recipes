@@ -73,6 +73,18 @@ flavors:
       - id: cranberry-juice
         quantity: { amount: 30, unit: g }
         note: 'Swap ~30 g of the water for cranberry juice so it does not thin out.'
+  - id: cracked-pepper
+    name: Cracked Black Pepper
+    additions:
+      - id: black-pepper
+        quantity: { amount: 2, unit: g }
+        note: 'Coarsely cracked for a peppery bite and visible flecks.'
+  - id: habanero-aged
+    name: Habanero (Aged Hot)
+    additions:
+      - id: habanero-powder
+        quantity: { amount: 0.5, unit: g }
+        note: 'Start low — habanero is fierce. Age 2+ weeks to integrate the heat (see Aging).'
 ---
 
 A bright-yellow American-style prepared mustard engineered as a **by-weight
@@ -179,6 +191,33 @@ or pickle jar is an optional starter that kicks the ferment off faster and more
 reliably. Fermented mustard keeps for months refrigerated and mellows further
 over time.
 
+## Aging
+
+The 24-48 hour rest in step 4 is the minimum; mustard genuinely rewards longer
+aging. It is also remarkably self-preserving — the low pH from the vinegar, the
+salt, and mustard's own antimicrobial oils mean a sealed jar keeps for **months**
+in the fridge with no added preservatives.
+
+A rough timeline:
+
+- **Day 0:** harsh, bitter, aggressively hot — too raw to judge.
+- **24-48 hours:** the familiar mellow tang arrives. Good to eat.
+- **1-2 weeks:** flavors marry, bitterness fully recedes, texture sets.
+- **1-3 months:** deeper, rounder, more integrated. Heat continues to fade.
+
+**Hot-aging with chiles.** Mustard's raw bite naturally decays with time, so if
+you want a mustard that's _still_ hot after aging, build in extra heat up front
+and let it integrate. The **Habanero (Aged Hot)** overlay is made for this: stir
+in habanero powder (or, for brighter, fruitier heat, a little fresh minced
+habanero), then age **at least 2 weeks**. Aging melds the chile into the mustard
+so it reads as one rounded, lingering heat rather than a raw top-note. The same
+logic applies to garlic, horseradish, and cracked black pepper — they all
+smooth and marry over a couple of weeks.
+
+Keep aging mustard in a clean, airtight jar in the fridge, and give it a stir if
+it separates. If you used fresh chile or aromatics, eat within a few weeks; the
+all-dry-spice versions keep far longer.
+
 ## Flavor overlays
 
 - **Honey Mustard** — whisk in honey (45 g pilot, ~16% of the base) after
@@ -192,6 +231,11 @@ over time.
 - **Cranberry (fruit mustard)** — swap ~30 g of the water for pure cranberry
   juice for a tart, ruby-tinged holiday mustard that shines with turkey, ham, and
   sharp cheese. See "Fruit juices" below.
+- **Cracked Black Pepper** — 2 g of coarsely cracked black pepper for a peppery
+  bite and visible flecks. Mellows and marries with a week or two of aging.
+- **Habanero (Aged Hot)** — 0.5 g habanero powder (start low — it is fierce) for
+  a hot mustard. Best aged at least 2 weeks so the heat integrates; see "Aging"
+  above.
 
 ### Fruit juices
 

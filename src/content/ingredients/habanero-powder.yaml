@@ -1,0 +1,21 @@
+name: Habanero Powder
+brand_assumption: 'Ground dried habanero chiles (values approximated from dried red chili/cayenne)'
+roles: [spice, heat, color]
+units:
+  cup: 85
+  tbsp: 5.3
+  tsp: 1.8
+nutrition_per_100g:
+  calories: 318
+  protein: 12.0
+  carbohydrate: 56.6
+  fat: 17.3
+  fiber: 27.2
+  net_carbs: 29.4
+  sodium_mg: 30
+  calcium_mg: 148
+  iron_mg: 7.8
+  potassium_mg: 2014
+notes: 'Fierce heat (~100,000-350,000 Scoville). Use sparingly and let it age to integrate.'
+sources:
+  - 'USDA FDC #170932 (cayenne, used as a proxy)'
