@@ -1,0 +1,20 @@
+name: Paprika
+brand_assumption: 'Sweet (unsmoked) paprika'
+roles: [spice, color]
+units:
+  cup: 108
+  tbsp: 6.8
+  tsp: 2.3
+nutrition_per_100g:
+  calories: 282
+  protein: 14.1
+  carbohydrate: 53.9
+  fat: 12.9
+  fiber: 34.9
+  net_carbs: 19.0
+  sodium_mg: 68
+  calcium_mg: 229
+  iron_mg: 21.1
+  potassium_mg: 2280
+sources:
+  - 'USDA FDC #170933'

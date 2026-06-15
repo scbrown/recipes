@@ -1,0 +1,22 @@
+name: Ground Turmeric
+roles: [spice, color]
+units:
+  cup: 144
+  tbsp: 9
+  tsp: 3
+nutrition_per_100g:
+  calories: 312
+  protein: 9.7
+  carbohydrate: 67.1
+  fat: 3.3
+  fiber: 22.7
+  net_carbs: 44.4
+  sodium_mg: 27
+  calcium_mg: 168
+  iron_mg: 55
+  potassium_mg: 2080
+  magnesium_mg: 208
+  zinc_mg: 4.5
+notes: 'Provides the signature bright yellow color of American-style prepared mustard.'
+sources:
+  - 'USDA FDC #172231'

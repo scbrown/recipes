@@ -1,0 +1,15 @@
+name: Distilled White Vinegar
+brand_assumption: '5% acidity distilled white vinegar'
+roles: [vinegar, acid, liquid]
+units:
+  cup: 239
+  tbsp: 14.9
+  tsp: 5
+  oz: 28.4
+nutrition_per_100g:
+  calories: 18
+  carbohydrate: 0
+  fat: 0
+  sodium_mg: 2
+sources:
+  - 'USDA FDC #173474'

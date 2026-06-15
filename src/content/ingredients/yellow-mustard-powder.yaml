@@ -1,0 +1,23 @@
+name: Yellow Mustard Powder
+brand_assumption: "Ground yellow/white mustard seed (Sinapis alba), e.g. Colman's or bulk ground mustard"
+roles: [spice, mustard, emulsifier]
+units:
+  cup: 100
+  tbsp: 6.3
+  tsp: 2.1
+nutrition_per_100g:
+  calories: 508
+  protein: 26.1
+  carbohydrate: 28.1
+  fat: 36.2
+  fiber: 12.2
+  net_carbs: 15.9
+  sodium_mg: 13
+  calcium_mg: 266
+  iron_mg: 9.2
+  potassium_mg: 738
+  magnesium_mg: 370
+  zinc_mg: 6.1
+notes: 'White/yellow mustard seed is mild (no allyl isothiocyanate). Pungency develops when the powder is hydrated with cold liquid and the myrosinase enzyme acts on sinalbin.'
+sources:
+  - 'USDA FDC #172234'

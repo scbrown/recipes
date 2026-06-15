@@ -1,0 +1,21 @@
+name: Garlic Powder
+roles: [spice, aromatic]
+units:
+  cup: 155
+  tbsp: 9.7
+  tsp: 3.1
+nutrition_per_100g:
+  calories: 331
+  protein: 16.6
+  carbohydrate: 72.7
+  fat: 0.7
+  fiber: 9.0
+  net_carbs: 63.7
+  sodium_mg: 60
+  calcium_mg: 79
+  iron_mg: 5.7
+  potassium_mg: 1193
+  magnesium_mg: 77
+  zinc_mg: 3.0
+sources:
+  - 'USDA FDC #171325'
