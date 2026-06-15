@@ -15,7 +15,9 @@ The deployed site is hosted on GitHub Pages from the `main` branch.
 - [Cranberry Agar Pearls](src/content/recipes/cranberry-agar-pearls.md)
 - [Sparkling Cranberry Shrub](src/content/recipes/sparkling-cranberry-shrub.md)
 - [Custom Breakfast Shake & Porridge Formulations](src/content/recipes/breakfast-powder-formulations.md)
+- [Ultimate Morning Energy & Wellness Shot](src/content/recipes/morning-energy-shot.md)
 - [Emulsified Extra-Hot Honey Garlic Wing Sauce](src/content/recipes/honey-garlic-wing-sauce.md)
+- [American Yellow Mustard (French's & Annie's Copycat)](src/content/recipes/french-yellow-mustard.md)
 
 ## Repository layout
 
