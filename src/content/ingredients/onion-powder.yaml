@@ -1,0 +1,21 @@
+name: Onion Powder
+roles: [spice, aromatic]
+units:
+  cup: 115
+  tbsp: 7.2
+  tsp: 2.4
+nutrition_per_100g:
+  calories: 341
+  protein: 10.4
+  carbohydrate: 79.1
+  fat: 1.0
+  fiber: 15.2
+  net_carbs: 63.9
+  sodium_mg: 73
+  calcium_mg: 384
+  iron_mg: 3.9
+  potassium_mg: 985
+  magnesium_mg: 110
+  zinc_mg: 4.4
+sources:
+  - 'USDA FDC #171327'

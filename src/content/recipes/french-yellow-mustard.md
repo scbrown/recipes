@@ -39,6 +39,16 @@ variants:
         note: 'Color depth plus a faint sweetness.'
       - id: garlic-powder
         quantity: { amount: 1.5, unit: g }
+  - id: deli-style
+    name: 'Deli-Style (Onion & Garlic)'
+    serving: '1 tsp (~5 g)'
+    yields_servings: 57
+    additions:
+      - id: onion-powder
+        quantity: { amount: 2.5, unit: g }
+        note: 'Savory backbone — the defining note of a New York deli yellow.'
+      - id: garlic-powder
+        quantity: { amount: 1.5, unit: g }
 
 flavors:
   - id: honey-mustard
@@ -58,8 +68,10 @@ formula** so it scales perfectly linearly: dial in the flavor on a one-cup pilot
 batch, then multiply every number by the same factor to make up to a full
 gallon. The base is a clean copy of the supermarket classics — the
 **French's-style** variant layers in paprika and garlic powder for that ballpark
-flavor, while the **Annie's-style** variant keeps it to the clean, organic core
-of seed, vinegar, turmeric, and salt.
+flavor, the **Annie's-style** variant keeps it to the clean, organic core of
+seed, vinegar, turmeric, and salt, and the **Deli-style** variant pushes onion
+and garlic forward for a savory New York deli yellow. It can also be
+**lacto-fermented** for a deeper, more complex tang (see below).
 
 ## Technical overview
 
@@ -128,6 +140,32 @@ than your target.
 Transfer to a clean jar, cover, and refrigerate at least **24-48 hours** before
 tasting. Fresh mustard is aggressively bitter and harsh; the rest rounds it into
 the familiar mellow tang. Flavor keeps improving for up to two weeks.
+
+## Fermenting it (cultured mustard)
+
+Lacto-fermentation trades the immediate, one-note vinegar sharpness for a
+rounder, funkier, more complex tang — and tames mustard's raw harshness more
+gently than acid alone. It works with any of the variants above; the key change
+is **holding the vinegar until after the ferment**.
+
+1. **Mash without acid.** Hydrate the mustard powder with the cold water and the
+   full **salt** (plus any variant spices). Skip the vinegar and turmeric for
+   now. The base already runs ~3% salt against the seed-and-water mash, which is
+   in the safe range for a wild lacto-ferment.
+2. **Ferment.** Pack into a clean jar, leaving headspace, and cover loosely (or
+   use a fermentation lid). Hold at cool room temperature (18-22 °C / 65-72 °F)
+   for **3-5 days**, stirring once a day. Expect a pleasant sour, tangy aroma and
+   maybe a few small bubbles — that is the lactic-acid bacteria at work.
+3. **Acidify and finish.** Stir in the **vinegar** and **turmeric**, then blend
+   and jar as usual. The vinegar drops the pH, halts the ferment, and locks in
+   the flavor. Refrigerate.
+
+Notes: use non-chlorinated water (chlorine inhibits the culture); keep the mash
+submerged or stirred to discourage surface mold; and trust your nose — sour and
+tangy is good, putrid or fuzzy is not. A spoonful of brine from a live sauerkraut
+or pickle jar is an optional starter that kicks the ferment off faster and more
+reliably. Fermented mustard keeps for months refrigerated and mellows further
+over time.
 
 ## Flavor overlays
 
