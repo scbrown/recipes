@@ -159,3 +159,7 @@ frenchs
 lacto
 headspace
 sauerkraut
+umami
+glutamate
+monosodium
+pomegranate

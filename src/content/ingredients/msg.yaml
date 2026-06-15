@@ -1,0 +1,11 @@
+name: MSG (Monosodium Glutamate)
+brand_assumption: 'Pure monosodium glutamate crystals'
+roles: [seasoning, umami]
+units:
+  cup: 216
+  tbsp: 13.5
+  tsp: 4.5
+nutrition_per_100g:
+  calories: 0
+  sodium_mg: 12280
+notes: 'Use a pinch. Deepens savory/umami depth without adding a flavor of its own. About one-third the sodium of table salt by weight.'

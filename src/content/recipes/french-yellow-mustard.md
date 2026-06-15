@@ -61,6 +61,18 @@ flavors:
     additions:
       - id: smoked-paprika
         quantity: { amount: 2, unit: g }
+  - id: umami-msg
+    name: Umami (MSG)
+    additions:
+      - id: msg
+        quantity: { amount: 1, unit: g }
+        note: 'A pinch. Deepens the savory backbone without a flavor of its own.'
+  - id: cranberry
+    name: Cranberry (Fruit Mustard)
+    additions:
+      - id: cranberry-juice
+        quantity: { amount: 30, unit: g }
+        note: 'Swap ~30 g of the water for cranberry juice so it does not thin out.'
 ---
 
 A bright-yellow American-style prepared mustard engineered as a **by-weight
@@ -173,6 +185,31 @@ over time.
   blending for a sweet-tangy condiment.
 - **Smoky** — bloom 2 g of smoked paprika into the batch for a deeper, barbecue-
   leaning profile. Stacks with the French's-style variant.
+- **Umami (MSG)** — a pinch (1 g pilot, ~0.4% of the base) deepens the savory,
+  brothy backbone without tasting of anything itself. Stacks with any variant and
+  is especially good on the Deli-style. MSG carries only about a third the sodium
+  of table salt, so it boosts savoriness without the same salt hit.
+- **Cranberry (fruit mustard)** — swap ~30 g of the water for pure cranberry
+  juice for a tart, ruby-tinged holiday mustard that shines with turkey, ham, and
+  sharp cheese. See "Fruit juices" below.
+
+### Fruit juices
+
+Replacing part of the **water** (and optionally a little of the vinegar) with
+fruit juice is the easy route to a fruit mustard. A few guidelines:
+
+- **Swap, don't just add.** Cut the water by the weight of juice you add, or the
+  mustard turns thin. Around 10-15% of the batch weight is a good starting point.
+- **Mind the sugar.** Sweet juices (apple, orange, pomegranate) push toward
+  honey-mustard territory — dial back or skip any added sweetener. Tart juices
+  like cranberry keep the savory edge.
+- **Lean on the juice's acid.** Tart, acidic juices let you trim the vinegar
+  slightly; the acid still sets the heat and stabilizes the mustard.
+- **Color is a bonus.** Dark juices (cranberry, pomegranate) tint the mustard;
+  expect the bright turmeric yellow to shift ruby or amber.
+
+Good pairings to try: cranberry (holiday classic), pomegranate, apple or cider,
+orange, and fig.
 
 ## Scaling to a gallon
 
