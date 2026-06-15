@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { publishedRecipeCount } from './helpers.ts';
 
 const COMPARE_URL = '/recipes/compare/';
 
@@ -8,7 +9,7 @@ test.describe('Compare page', () => {
     const table = page.getByTestId('compare-table');
     await expect(table).toBeVisible();
     const rows = table.locator('tbody tr');
-    await expect(rows).toHaveCount(5);
+    await expect(rows).toHaveCount(publishedRecipeCount());
   });
 
   test('sorts by protein when the header is clicked', async ({ page }) => {

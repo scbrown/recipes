@@ -20,8 +20,10 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } },
     },
     {
+      // Pixel 5 is Chromium-based (iPhone profiles default to WebKit, which CI
+      // does not install) — keeps the mobile project runnable with chromium only.
       name: 'chromium-mobile',
-      use: { ...devices['iPhone 13'] },
+      use: { ...devices['Pixel 5'] },
     },
   ],
   webServer: {

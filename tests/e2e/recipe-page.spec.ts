@@ -7,9 +7,7 @@ const RECIPE_URL = '/recipes/recipes/crepes-pancakes-nougat/';
 test.describe('Recipe page', () => {
   test('loads and renders ingredients with default nutrition', async ({ page }) => {
     await page.goto(RECIPE_URL);
-    await expect(
-      page.getByRole('heading', { name: 'Master Crepe, Pancake, and Nougat Mix' }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Master Crepe and Pancake Mix' })).toBeVisible();
     await expect(page.getByTestId('nutrition-panel')).toBeVisible();
     const calories = await page.getByTestId('nutr-calories').textContent();
     expect(calories).not.toBe('—');
