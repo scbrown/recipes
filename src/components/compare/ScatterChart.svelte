@@ -63,7 +63,7 @@
             },
             grid: { color: 'rgb(58 62 66)' },
             ticks: {
-              color: 'rgb(122 128 133)',
+              color: 'rgb(184 188 192)',
               font: { family: "'Intel One Mono', ui-monospace, monospace" },
             },
           },
@@ -77,7 +77,7 @@
             },
             grid: { color: 'rgb(58 62 66)' },
             ticks: {
-              color: 'rgb(122 128 133)',
+              color: 'rgb(184 188 192)',
               font: { family: "'Intel One Mono', ui-monospace, monospace" },
             },
             beginAtZero: true,

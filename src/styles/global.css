@@ -14,8 +14,11 @@
   --color-steel-700: #3a3e42;
   --color-steel-800: #26292c;
   --color-steel-900: #1a1c1e;
-  --color-fg: #e6e8ea;
-  --color-muted: #989ea3;
+  --color-fg: #f0f2f4;
+
+  /* Secondary text. Raised from the old #989ea3 (~6:1) to clear WCAG AA
+     comfortably (~8:1 on surfaces) — it carries real content like quantities. */
+  --color-muted: #b8bcc0;
   --color-accent: #ff4f00;
   --color-accent-soft: #ff7340;
   --color-warning: #f5a623;
@@ -101,7 +104,7 @@ h3 {
 
 h3::before {
   content: '— ';
-  color: var(--color-steel-500);
+  color: var(--color-steel-400);
 }
 
 p,

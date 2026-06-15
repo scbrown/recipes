@@ -55,7 +55,7 @@
           r: {
             beginAtZero: true,
             max: 100,
-            ticks: { stepSize: 25, color: 'rgb(122 128 133)', backdropColor: 'transparent' },
+            ticks: { stepSize: 25, color: 'rgb(184 188 192)', backdropColor: 'transparent' },
             grid: { color: 'rgb(58 62 66)' },
             angleLines: { color: 'rgb(58 62 66)' },
             pointLabels: {
