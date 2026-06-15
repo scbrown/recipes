@@ -98,10 +98,16 @@ export type ResolvedIngredient = {
 /**
  * Compute total nutrition across a list of (ingredient, quantity) pairs.
  * Returns total, per-ingredient breakdown, and (if servings provided) per-serving values.
+ *
+ * `reductions` subtract a quantity of a base ingredient (e.g. an overlay that
+ * swaps water for fruit juice). Each reduction is netted against the matching
+ * ingredient's contribution by recomputing it at the reduced mass; reductions
+ * beyond what is present are clamped to zero (you cannot remove what is not there).
  */
 export function computeNutrition(
   items: ResolvedIngredient[],
   servings?: number,
+  reductions: ResolvedIngredient[] = [],
 ): ComputedNutrition {
   const contributions: IngredientContribution[] = items.map(
     ({ ingredientId, ingredient, quantity }) => {
@@ -110,6 +116,16 @@ export function computeNutrition(
       return { ingredientId, grams, nutrients };
     },
   );
+
+  for (const { ingredientId, ingredient, quantity } of reductions) {
+    const removeGrams = quantityToGrams(quantity, ingredient);
+    if (removeGrams <= 0) continue;
+    const match = contributions.find((c) => c.ingredientId === ingredientId && c.grams > 0);
+    if (!match) continue;
+    const newGrams = round(Math.max(0, match.grams - removeGrams));
+    match.grams = newGrams;
+    match.nutrients = scaleNutrients(ingredient.nutrition_per_100g, newGrams);
+  }
 
   const total = contributions.reduce<Nutrients>((acc, c) => addNutrients(acc, c.nutrients), {
     calories: 0,

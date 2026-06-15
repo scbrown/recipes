@@ -111,6 +111,22 @@ function checkRecipeIngredient(item, recipeId, ingredients, locationLabel) {
   }
 }
 
+function checkReduction(reduction, recipeId, ingredients, baseIds, locationLabel) {
+  const ctx = `recipe "${recipeId}" › ${locationLabel}`;
+  const ing = ingredients.get(reduction.id);
+  if (!ing) {
+    err(`${ctx}: unknown reduction ingredient "${reduction.id}"`);
+    return;
+  }
+  checkUnit(ing, reduction.id, reduction.quantity, ctx);
+  if (!baseIds.has(reduction.id)) {
+    warn(
+      `${ctx}: reduction targets "${reduction.id}", which is not a base ingredient — ` +
+        `there is nothing to subtract.`,
+    );
+  }
+}
+
 function main() {
   return Promise.all([loadIngredients(), loadRecipes()]).then(([ingredients, recipes]) => {
     console.log(`Loaded ${ingredients.size} ingredients and ${recipes.length} recipes.`);
@@ -125,6 +141,11 @@ function main() {
       }
     };
     for (const recipe of recipes) {
+      const baseIds = new Set();
+      for (const item of recipe.data.ingredients ?? []) {
+        if ('id' in item) baseIds.add(item.id);
+        if ('default' in item) baseIds.add(item.default);
+      }
       for (const [idx, item] of (recipe.data.ingredients ?? []).entries()) {
         checkRecipeIngredient(item, recipe.id, ingredients, `ingredients[${idx}]`);
         collectReferences(item);
@@ -139,6 +160,16 @@ function main() {
           );
           collectReferences(addition);
         }
+        for (const [ri, reduction] of (variant.reductions ?? []).entries()) {
+          checkReduction(
+            reduction,
+            recipe.id,
+            ingredients,
+            baseIds,
+            `variants[${vi}].reductions[${ri}]`,
+          );
+          referencedIds.add(reduction.id);
+        }
       }
       for (const [fi, flavor] of (recipe.data.flavors ?? []).entries()) {
         for (const [ai, addition] of (flavor.additions ?? []).entries()) {
@@ -149,6 +180,16 @@ function main() {
             `flavors[${fi}].additions[${ai}]`,
           );
           collectReferences(addition);
+        }
+        for (const [ri, reduction] of (flavor.reductions ?? []).entries()) {
+          checkReduction(
+            reduction,
+            recipe.id,
+            ingredients,
+            baseIds,
+            `flavors[${fi}].reductions[${ri}]`,
+          );
+          referencedIds.add(reduction.id);
         }
       }
     }

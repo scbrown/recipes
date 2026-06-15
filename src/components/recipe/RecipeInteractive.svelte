@@ -138,6 +138,12 @@
               </td>
             </tr>
           {/each}
+          {#each lines.variantReductions as r (r.ingredientId + r.quantityDisplay)}
+            <tr class="reduction">
+              <td class="qty mono">−{r.quantityDisplay}</td>
+              <td>{r.name} <span class="note muted">— removed</span></td>
+            </tr>
+          {/each}
         </tbody>
       </table>
     {/if}
@@ -167,6 +173,12 @@
                 <tr>
                   <td class="qty mono">{line.quantityDisplay}</td>
                   <td>{line.name}</td>
+                </tr>
+              {/each}
+              {#each f.reductions as r (r.ingredientId + r.quantityDisplay)}
+                <tr class="reduction">
+                  <td class="qty mono">−{r.quantityDisplay}</td>
+                  <td>{r.name} <span class="note muted">— removed</span></td>
                 </tr>
               {/each}
             </tbody>
@@ -266,6 +278,10 @@
   .option input {
     margin: 0;
     accent-color: var(--color-accent);
+  }
+  .reduction {
+    color: var(--color-muted);
+    font-style: italic;
   }
   .flavor-details {
     margin-top: 1rem;

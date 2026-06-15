@@ -19,6 +19,7 @@ const payload: RecipePayload = {
       defaultId: 'whey',
       alternatives: [{ ingredientId: 'pea', quantity: { amount: 33, unit: 'g' } }],
     },
+    { kind: 'literal', ingredientId: 'water', quantity: { amount: 30, unit: 'g' } },
   ],
   variants: [
     {
@@ -35,8 +36,28 @@ const payload: RecipePayload = {
       name: 'Sweet',
       additions: [{ kind: 'literal', ingredientId: 'sugar', quantity: { amount: 20, unit: 'g' } }],
     },
+    {
+      id: 'fruity',
+      name: 'Fruity',
+      additions: [{ kind: 'literal', ingredientId: 'juice', quantity: { amount: 30, unit: 'g' } }],
+      reductions: [{ ingredientId: 'water', quantity: { amount: 30, unit: 'g' } }],
+    },
   ],
   library: {
+    water: {
+      id: 'water',
+      name: 'Water',
+      data: { name: 'Water', units: { g: 1 }, nutrition_per_100g: { calories: 0 } },
+    },
+    juice: {
+      id: 'juice',
+      name: 'Juice',
+      data: {
+        name: 'Juice',
+        units: { g: 1 },
+        nutrition_per_100g: { calories: 46, carbohydrate: 12 },
+      },
+    },
     flour: {
       id: 'flour',
       name: 'Flour',
@@ -104,6 +125,20 @@ describe('computeForSelection', () => {
     expect(withFlavor.total.calories).toBe(base.total.calories + 76);
   });
 
+  it('nets a reduction against the matching base ingredient', () => {
+    const result = computeForSelection(payload, {
+      ...defaultSelection(payload),
+      flavorIds: ['fruity'],
+    });
+    // juice 30g adds 13.8 cal; water (0 cal) is reduced from 30g to 0g.
+    const water = result.contributions.find((c) => c.ingredientId === 'water');
+    const juice = result.contributions.find((c) => c.ingredientId === 'juice');
+    expect(water?.grams).toBe(0);
+    expect(juice?.grams).toBe(30);
+    // 546 base + 13.8 juice (water swap is calorie-neutral here).
+    expect(result.total.calories).toBeCloseTo(559.8, 1);
+  });
+
   it('returns null perServing when variant has no yields_servings', () => {
     const altPayload: RecipePayload = {
       ...payload,
@@ -119,12 +154,21 @@ describe('resolvedIngredientLines', () => {
   it('returns base, variant, and active flavor lines', () => {
     const s = { ...defaultSelection(payload), flavorIds: ['sweet'] };
     const out = resolvedIngredientLines(payload, s);
-    expect(out.base).toHaveLength(2);
+    expect(out.base).toHaveLength(3);
     expect(out.base[1]?.name).toBe('Whey');
     expect(out.variant).toHaveLength(1);
     expect(out.variant[0]?.name).toBe('Butter');
     expect(out.flavors).toHaveLength(1);
     expect(out.flavors[0]?.additions[0]?.name).toBe('Sugar');
+  });
+
+  it('exposes reductions on an active flavor for display', () => {
+    const s = { ...defaultSelection(payload), flavorIds: ['fruity'] };
+    const out = resolvedIngredientLines(payload, s);
+    expect(out.flavors[0]?.additions[0]?.name).toBe('Juice');
+    expect(out.flavors[0]?.reductions).toHaveLength(1);
+    expect(out.flavors[0]?.reductions[0]?.name).toBe('Water');
+    expect(out.flavors[0]?.reductions[0]?.quantityDisplay).toBe('30 g');
   });
 
   it('reflects substitution choice in slot rows', () => {

@@ -124,4 +124,35 @@ describe('computeNutrition', () => {
     ]);
     expect(result.perServing).toBeNull();
   });
+
+  it('nets a reduction against the matching contribution', () => {
+    const result = computeNutrition(
+      [{ ingredientId: 'whey', ingredient: whey, quantity: { amount: 2, unit: 'scoop' } }],
+      undefined,
+      [{ ingredientId: 'whey', ingredient: whey, quantity: { amount: 1, unit: 'scoop' } }],
+    );
+    // 60g - 30g = 30g of whey → 114 cal, 27 protein.
+    expect(result.contributions[0]?.grams).toBe(30);
+    expect(result.total.calories).toBe(114);
+    expect(result.total.protein).toBe(27);
+  });
+
+  it('clamps a reduction larger than what is present to zero', () => {
+    const result = computeNutrition(
+      [{ ingredientId: 'whey', ingredient: whey, quantity: { amount: 1, unit: 'scoop' } }],
+      undefined,
+      [{ ingredientId: 'whey', ingredient: whey, quantity: { amount: 5, unit: 'scoop' } }],
+    );
+    expect(result.contributions[0]?.grams).toBe(0);
+    expect(result.total.calories).toBe(0);
+  });
+
+  it('ignores a reduction with no matching ingredient', () => {
+    const result = computeNutrition(
+      [{ ingredientId: 'whey', ingredient: whey, quantity: { amount: 1, unit: 'scoop' } }],
+      undefined,
+      [{ ingredientId: 'allulose', ingredient: allulose, quantity: { amount: 1, unit: 'tbsp' } }],
+    );
+    expect(result.total.calories).toBe(114);
+  });
 });

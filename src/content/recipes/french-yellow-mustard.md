@@ -73,6 +73,9 @@ flavors:
       - id: cranberry-juice
         quantity: { amount: 30, unit: g }
         note: 'Swap ~30 g of the water for cranberry juice so it does not thin out.'
+    reductions:
+      - id: water
+        quantity: { amount: 30, unit: g }
   - id: cracked-pepper
     name: Cracked Black Pepper
     additions:

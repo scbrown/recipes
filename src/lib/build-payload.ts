@@ -10,6 +10,8 @@ import type {
 
 type RecipeEntry = CollectionEntry<'recipes'>;
 type RecipeIngredient = RecipeEntry['data']['ingredients'][number];
+type RecipeFlavor = NonNullable<RecipeEntry['data']['flavors']>[number];
+type RecipeReduction = NonNullable<RecipeFlavor['reductions']>[number];
 
 async function lookup(id: string): Promise<IngredientSummary | null> {
   const entry = await getEntry('ingredients', id);
@@ -20,6 +22,13 @@ async function lookup(id: string): Promise<IngredientSummary | null> {
 function lineIngredientIds(item: RecipeIngredient): string[] {
   if ('id' in item) return [item.id.id];
   return [item.default.id, ...(item.alternatives ?? []).map((a) => a.id.id)];
+}
+
+function toReduction(r: RecipeReduction): {
+  ingredientId: string;
+  quantity: RecipeReduction['quantity'];
+} {
+  return { ingredientId: r.id.id, quantity: r.quantity };
 }
 
 function toLine(item: RecipeIngredient): IngredientLine {
@@ -53,20 +62,26 @@ export async function buildRecipePayload(recipe: RecipeEntry): Promise<RecipePay
     serving: v.serving,
     ...(v.yields_servings !== undefined && { yields_servings: v.yields_servings }),
     additions: (v.additions ?? []).map(toLine),
+    reductions: (v.reductions ?? []).map(toReduction),
   }));
   const flavors: FlavorPayload[] = (recipe.data.flavors ?? []).map((f) => ({
     id: f.id,
     name: f.name,
     additions: f.additions.map(toLine),
+    reductions: (f.reductions ?? []).map(toReduction),
   }));
 
   const referencedIds = new Set<string>();
   for (const item of recipe.data.ingredients)
     for (const id of lineIngredientIds(item)) referencedIds.add(id);
-  for (const v of recipe.data.variants ?? [])
+  for (const v of recipe.data.variants ?? []) {
     for (const a of v.additions ?? []) for (const id of lineIngredientIds(a)) referencedIds.add(id);
-  for (const f of recipe.data.flavors ?? [])
+    for (const r of v.reductions ?? []) referencedIds.add(r.id.id);
+  }
+  for (const f of recipe.data.flavors ?? []) {
     for (const a of f.additions) for (const id of lineIngredientIds(a)) referencedIds.add(id);
+    for (const r of f.reductions ?? []) referencedIds.add(r.id.id);
+  }
 
   const library: Record<string, IngredientSummary> = {};
   for (const id of referencedIds) {

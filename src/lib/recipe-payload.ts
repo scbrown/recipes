@@ -12,18 +12,22 @@ export type IngredientLine =
       note?: string;
     };
 
+export type ReductionLine = { ingredientId: string; quantity: Quantity };
+
 export type VariantPayload = {
   id: string;
   name: string;
   serving: string;
   yields_servings?: number;
   additions: IngredientLine[];
+  reductions?: ReductionLine[];
 };
 
 export type FlavorPayload = {
   id: string;
   name: string;
   additions: IngredientLine[];
+  reductions?: ReductionLine[];
 };
 
 export type IngredientSummary = {
@@ -93,6 +97,15 @@ function resolveLine(
   };
 }
 
+function resolveReduction(
+  reduction: ReductionLine,
+  library: Record<string, IngredientSummary>,
+): ResolvedItem | null {
+  const entry = library[reduction.ingredientId];
+  if (!entry) return null;
+  return { ingredientId: entry.id, ingredient: entry.data, quantity: reduction.quantity };
+}
+
 export function computeForSelection(
   payload: RecipePayload,
   selection: Selection,
@@ -107,11 +120,20 @@ export function computeForSelection(
   const resolved = lines
     .map((line) => resolveLine(line, selection, payload.library))
     .filter((r): r is ResolvedItem => r !== null);
-  return computeNutrition(resolved, variant?.yields_servings);
+  const reductions = [...(variant?.reductions ?? []), ...flavors.flatMap((f) => f.reductions ?? [])]
+    .map((r) => resolveReduction(r, payload.library))
+    .filter((r): r is ResolvedItem => r !== null);
+  return computeNutrition(resolved, variant?.yields_servings, reductions);
 }
 
 export type ResolvedIngredientLine = {
   line: IngredientLine;
+  ingredientId: string;
+  name: string;
+  quantityDisplay: string;
+};
+
+export type ResolvedReduction = {
   ingredientId: string;
   name: string;
   quantityDisplay: string;
@@ -128,8 +150,23 @@ export function resolvedIngredientLines(
 ): {
   base: ResolvedIngredientLine[];
   variant: ResolvedIngredientLine[];
-  flavors: { flavorId: string; flavorName: string; additions: ResolvedIngredientLine[] }[];
+  variantReductions: ResolvedReduction[];
+  flavors: {
+    flavorId: string;
+    flavorName: string;
+    additions: ResolvedIngredientLine[];
+    reductions: ResolvedReduction[];
+  }[];
 } {
+  const resolveReductionDisplay = (r: ReductionLine): ResolvedReduction | null => {
+    const entry = payload.library[r.ingredientId];
+    if (!entry) return null;
+    return {
+      ingredientId: entry.id,
+      name: entry.name,
+      quantityDisplay: formatQuantity(r.quantity),
+    };
+  };
   const resolveOne = (line: IngredientLine): ResolvedIngredientLine | null => {
     if (line.kind === 'literal') {
       const entry = payload.library[line.ingredientId];
@@ -159,14 +196,20 @@ export function resolvedIngredientLines(
   const variantLines = (variant?.additions ?? [])
     .map(resolveOne)
     .filter((r): r is ResolvedIngredientLine => r !== null);
+  const variantReductions = (variant?.reductions ?? [])
+    .map(resolveReductionDisplay)
+    .filter((r): r is ResolvedReduction => r !== null);
   const flavorLines = payload.flavors
     .filter((f) => selection.flavorIds.includes(f.id))
     .map((f) => ({
       flavorId: f.id,
       flavorName: f.name,
       additions: f.additions.map(resolveOne).filter((r): r is ResolvedIngredientLine => r !== null),
+      reductions: (f.reductions ?? [])
+        .map(resolveReductionDisplay)
+        .filter((r): r is ResolvedReduction => r !== null),
     }));
-  return { base, variant: variantLines, flavors: flavorLines };
+  return { base, variant: variantLines, variantReductions, flavors: flavorLines };
 }
 
 export type { Nutrients };

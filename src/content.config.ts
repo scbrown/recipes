@@ -92,6 +92,15 @@ const recipeIngredient = z
   ])
   .describe('Either a literal ingredient reference or a substitutable role slot');
 
+// A reduction subtracts a quantity of a base ingredient when an overlay is
+// active — e.g. a fruit-mustard overlay that swaps water for juice.
+const reduction = z
+  .object({
+    id: reference('ingredients'),
+    quantity: recipeQuantity,
+  })
+  .strict();
+
 const variant = z
   .object({
     id: slug,
@@ -99,6 +108,7 @@ const variant = z
     serving: z.string().min(1),
     yields_servings: z.number().positive().optional(),
     additions: z.array(recipeIngredient).optional(),
+    reductions: z.array(reduction).optional(),
   })
   .strict();
 
@@ -107,6 +117,7 @@ const flavor = z
     id: slug,
     name: z.string().min(1),
     additions: z.array(recipeIngredient).min(1),
+    reductions: z.array(reduction).optional(),
   })
   .strict();
 
